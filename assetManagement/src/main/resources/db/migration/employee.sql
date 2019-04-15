@@ -16,11 +16,11 @@ CREATE TABLE employee (
 -- Data for table 'employee'
 --
 
-INSERT INTO employee( EMPLOYEE_ID, FIRST_NAME , LAST_NAME, EMAIL) VALUES	(1000,'Leslie','Andrews','leslie@luv2code.com');
-INSERT INTO employee( EMPLOYEE_ID, FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1001,'Emma','Baumgarten','emma@luv2code.com');
-INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1002,'Avani','Gupta','avani@luv2code.com');
-INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1003,'Yuri','Petrov','yuri@luv2code.com');
-INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1004,'Juan','Vega','juan@luv2code.com');
+INSERT INTO employee( EMPLOYEE_ID, FIRST_NAME , LAST_NAME, EMAIL) VALUES	(1000,'Leslie','Andrews','leslie@c.com');
+INSERT INTO employee( EMPLOYEE_ID, FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1001,'Emma','Baumgarten','emma@c.com');
+INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1002,'Avani','Gupta','avani@c.com');
+INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1003,'Yuri','Petrov','yuri@c.com');
+INSERT INTO employee( EMPLOYEE_ID,FIRST_NAME , LAST_NAME, EMAIL)  VALUES	(1004,'Juan','Vega','juan@c.com');
 
 commit;
 
