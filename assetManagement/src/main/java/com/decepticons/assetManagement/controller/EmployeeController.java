@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.decepticons.assetManagement.entity.Employee;
 import com.decepticons.assetManagement.services.protocols.IEmployeeService;
+import com.decepticons.assetManagement.util.AssetManagementUtil;
 
 
 
@@ -23,6 +24,8 @@ import com.decepticons.assetManagement.services.protocols.IEmployeeService;
 @RequestMapping("/employees")
 public class EmployeeController {
 
+	
+	
 	@Autowired
 	private IEmployeeService empService;
 	
@@ -56,7 +59,10 @@ public class EmployeeController {
 	@PostMapping("/save")
 	public String saveEmployeeData(@ModelAttribute("empRecord") Employee emp)
 	{
-		empService.save(emp);
+		
+		System.out.println("saving.. "+emp);
+		
+		empService.updateEmployee(emp);
 		
 		System.out.println("Saved "+emp);
 		return "redirect:/employees/list";
@@ -66,6 +72,9 @@ public class EmployeeController {
 	public String showFormForUpdate(@RequestParam("employeeid") int Id, Model model)
 	{
 		Employee emp = empService.findById(Id);
+		
+		System.out.println("Saved "+emp);
+		
 		model.addAttribute("empRecord",emp);
 		
 		return "employees/EmployeeForm";
