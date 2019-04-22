@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Asset Management</title>
+<title>Thyeleaf Demo</title>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -14,22 +14,24 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+
 </head>
 <body>
 	<div class="container">
-		<h3>Employee Form</h3>
+		<h3>Add New Employee</h3>
 		<a th:href="@{/employees/list}" class="btn btn-primary btn-sm mb-3">
 			Back </a>
-		<form name="MAINFORM" action="#" th:action="@{/employees/save}"	th:object="${empRecord}" method="POST">
+		<form name="MAINFORM" action="#" th:action="@{/employees/save}"
+			th:object="${empRecord}" method="POST">
 			<input type="hidden" th:field="*{id}" /> 
-			
-			<input class="form-control mb-4 col-4" type="text" th:field="*{firstname}"	placeholder="First Name" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{lastname}" placeholder="Last Name" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{email}"	placeholder="Email" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{hireDate}" placeholder="Hire Date (YYYY-DD-MM)" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{endDate}" placeholder="End Date (YYYY-DD-MM)" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{phoneNumber}" placeholder="Phone Number" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{salary}" placeholder="Salary" />
+			<input class="form-control mb-4 col-4" type="text" th:field="*{firstname}"
+				placeholder="First Name" /> 
+			<input class="form-control mb-4 col-4"
+				type="text" th:field="*{lastname}" placeholder="Last Name" /> 
+				
+			<input
+				class="form-control mb-4 col-4" type="text" th:field="*{email}"
+				placeholder="Email" />
 
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>
