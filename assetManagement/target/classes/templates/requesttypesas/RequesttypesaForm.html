@@ -18,21 +18,14 @@
 </head>
 <body>
 	<div class="container">
-		<h3>Add New Employee</h3>
-		<a th:href="@{/employees/list}" class="btn btn-primary btn-sm mb-3">
+		<h3>Add New Type Of Request</h3>
+		<a th:href="@{/requesttypesas/list}" class="btn btn-primary btn-sm mb-3">
 			Back </a>
-		<form name="MAINFORM" action="#" th:action="@{/employees/save}"
-			th:object="${empRecord}" method="POST">
+		<form name="MAINFORM" action="#" th:action="@{/requesttypesas/save}"
+			th:object="${reqRecord}" method="POST">
 			<input type="hidden" th:field="*{id}" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{firstname}"
-				placeholder="First Name" /> 
-			<input class="form-control mb-4 col-4"
-				type="text" th:field="*{lastname}" placeholder="Last Name" /> 
-				
-			<input
-				class="form-control mb-4 col-4" type="text" th:field="*{email}"
-				placeholder="Email" />
-
+			<input class="form-control mb-4 col-4" type="text" th:field="*{requesttype}"
+				placeholder="Request Type" /> 
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>
 	</div>
