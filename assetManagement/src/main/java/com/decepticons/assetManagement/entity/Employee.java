@@ -1,10 +1,14 @@
 package com.decepticons.assetManagement.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -14,7 +18,7 @@ import lombok.Setter;
 
 @Data
 @Entity
-@Table(name="employee")
+@Table(name="employees")
 public class Employee {
 
 
@@ -35,29 +39,34 @@ public class Employee {
 	
 	@Column(name="email")
 	private String email;
+
+	@Column(name = "end_date")
+	//@DateTimeFormat(pattern = "dd/mm/YY")
+	private Date endDate;
+
+	@Column(name = "hire_date")
+	private Date hireDate;
+
+	@Column(name = "phone_number")
+	private String phoneNumber;
+
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
+
+	private int salary;
+
+	// bi-directional many-to-one association to Department
+	@ManyToOne
+	@JoinColumn(name = "dept_id")
+	private Department department;
+
 	
-	//define constructors
+	@Column(name = "user_Name")
+	private String userName;
 	
-	public Employee()
-	{
-		
-	}
-	
-	public Employee(int ID, String first_name, String last_name, String email) {
-		super();
-		this.firstname = first_name;
-		this.lastname = last_name;
-		this.email = email;
-		this.id = ID;
-	}
-	
-	public Employee(String first_name, String last_name, String email) {
-		super();
-		this.firstname = first_name;
-		this.lastname = last_name;
-		this.email = email;
-	}
-	//define getter/setters
+//	@Column(name = "password")
+//	private String password;
 	
 	//define toString
 	@Override
