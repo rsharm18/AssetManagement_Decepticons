@@ -18,27 +18,24 @@
 </head>
 <body>
 	<div class="container">
-		<h3>Employee Directory</h3>
-		<a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
+		<h3>Request Type Directory</h3>
+		<a th:href="@{/requesttypeemps/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Type Of Request </a>
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<!--th>Employee ID</th> -->
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Action</th>
+					<th>Request Type</th>
+					<th>Action</th> 
+					
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="emp : ${employees}">
+				<tr th:each="req : ${requesttypeemps}">
 					<!-- td th:text="${emp.id}" /> -->
-					<td th:text="${emp.firstname}" />
-					<td th:text="${emp.lastname}" />
-					<td th:text="${emp.email}" />
+					<td th:text="${req.requesttype}" />
 					<td>
-						<a th:href="@{/employees/showForForUpdate(employeeid=${emp.id})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
-						<a th:href="@{/employees/deleteRecord(employeeid=${emp.id})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
+						<a th:href="@{/requesttypeemps/showForForUpdate(requestid=${req.id})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
+						<a th:href="@{/requesttypeemps/deleteRecord(requestid=${req.id})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
 					</td>
 				</tr>
 			</tbody>
