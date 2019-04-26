@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Data
 @Entity
-@Table(name="employee")
+@Table(name = "employees")
 public class Employee {
 
 
