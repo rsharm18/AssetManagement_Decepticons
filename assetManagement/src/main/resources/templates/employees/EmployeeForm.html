@@ -35,7 +35,7 @@
             <input class="form-control mb-4 col-4" type="text" th:field="*{phoneNumber}" placeholder="Phone Number" />
             <input class="form-control mb-4 col-4" type="text" th:field="*{salary}" placeholder="Salary" />
 
-            <select class="form-control" th:field="*{department}" id="department" >
+            <select class="form-control mb-4 col-4" th:field="*{department}" id="department" >
                 <option value="0">Select Department</option>
                 <option th:each="department : ${departments}" th:value="${department.getDeptId()}"
                     th:text="${department.getDeptName()}"
@@ -43,7 +43,7 @@
                 </option>
             </select>
 
-            <select class="form-control" th:field="*{role}" id="role" >
+            <select class="form-control mb-4 col-4" th:field="*{role}" id="role" >
                 <option value="0">Select Role</option>
                 <option th:each="role : ${roles}" th:value="${role.getRoleId()}"
                     th:text="${role.getRoleName()}"

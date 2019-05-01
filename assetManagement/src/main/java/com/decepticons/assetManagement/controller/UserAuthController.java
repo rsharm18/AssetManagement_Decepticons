@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.decepticons.assetManagement.entity.UserAuth;
 import com.decepticons.assetManagement.services.protocols.IUserAuthService;
@@ -37,6 +38,61 @@ public class UserAuthController {
 		userCredentials = new ArrayList<UserAuth>(uAuthService.findAll());
 	}
 
+	@PostMapping("/login")
+	public String authenticateUser(@RequestParam("userName") String userName,@RequestParam("password") String password, Model model)
+	{
+		String nextPage="redirect:/Login.html";
+		
+		System.out.println(" userName "+userName+" password "+password);
+		
+		//System.out.println(uAuthService.findAll());
+		UserAuth  user = uAuthService.findByUserName(userName);
+		
+		if(user !=null)
+		{
+			System.out.println("user "+user+" password match "+(user.getPassword().equals(password)));
+			if(user.getPassword().equals(password))
+			{
+				nextPage = "/main/Home";
+			}
+		}
+		System.out.println(" user "+user+" nextPage "+nextPage );
+		return nextPage;
+	}
+	
+	/*
+	 *   <frame src="http://localhost:8080/userAuth/Header" name="head">
+        <frameset cols="10%,90%">
+            <frame src="http://localhost:8080/userAuth/SideMenu" name="SIDE">
+                <frame src="http://localhost:8080/userAuth/Body" name="MAIN">
+        </frameset>
+        <frame src="http://localhost:8080/userAuth/Bottom" name="bottom">
+	 */
+	
+	@GetMapping("Header")
+	public String getHeader(Model model)
+	{
+		return "/main/Header";
+	}
+	
+	@GetMapping("SideMenu")
+	public String getSideMenu(Model model)
+	{
+		return "/main/SideMenu";
+	}
+	
+	@GetMapping("Body")
+	public String getMainBody(Model model)
+	{
+		return "redirect:http://localhost:8080/employees/list";
+	}
+	
+	@GetMapping("Bottom")
+	public String getFooter(Model model)
+	{
+		return "/main/Bottom";
+	}
+	
 	
 	@GetMapping("/list")
 	public String listUserAuths(Model model)
