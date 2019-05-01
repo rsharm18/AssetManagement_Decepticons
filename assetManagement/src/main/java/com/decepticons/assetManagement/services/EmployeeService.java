@@ -68,8 +68,8 @@ public class EmployeeService implements IEmployeeService {
 			System.out.println("username " + userName);
 			employee.setUserName(userName);
 //			employee.setPassword(userName);
-			employee.setDepartment(dept);
-			employee.setRole(role);
+			//employee.setDepartment(dept);
+			//employee.setRole(role);
 		}
 		userName = employee.getUserName();
 

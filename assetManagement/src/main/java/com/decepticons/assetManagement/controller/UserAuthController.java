@@ -21,7 +21,7 @@ import com.decepticons.assetManagement.util.AssetManagementUtil;
 
 
 @Controller
-@RequestMapping("/userCredentials")
+@RequestMapping("/userAuth")
 public class UserAuthController {
 
 	

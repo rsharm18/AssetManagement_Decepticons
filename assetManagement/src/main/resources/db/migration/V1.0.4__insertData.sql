@@ -7,11 +7,8 @@ insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXT
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Network');
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Law');
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Immigration');
+INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Boss'); 
 
-
-INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Human Resource'); 
-INSERT INTO departments (department_id, department_name, department_manager) VALUES (2, 'Information Technology', 3); 
-INSERT INTO departments (department_id, department_name, department_manager) VALUES (3, 'Accounting', 1);  
 
 --commit;
 
@@ -23,6 +20,11 @@ insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hi
 insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name) values(EMP_ID_SEQ.NEXTVAL,304,200,'Abhi','T','abhi.t@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),0985329099,'t123');
 
 --commit;
+
+INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Human Resource'); 
+INSERT INTO departments (department_id, department_name, department_manager) VALUES (2, 'Information Technology', 102); 
+INSERT INTO departments (department_id, department_name, department_manager) VALUES (3, 'Accounting', 103);  
+
 
 
 --CHANGE # 3 STARTED

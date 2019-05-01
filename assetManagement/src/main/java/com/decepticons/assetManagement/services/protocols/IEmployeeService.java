@@ -12,4 +12,5 @@ public interface IEmployeeService {
 	public Employee findById(int Id);
 	public void save (Employee employee);
 	public void deleteById(int id);
+	public void updateEmployee(Employee emp);
 }
