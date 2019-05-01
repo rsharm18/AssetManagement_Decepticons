@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<h3>User Auth Form</h3>
-		<a th:href="@{/userCredentials/list}" class="btn btn-primary btn-sm mb-3">
+		<a th:href="@{/userAuth/list}" class="btn btn-primary btn-sm mb-3">
 			Back </a>
 		<form name="MAINFORM" action="#" th:action="@{/userCredentials/save}"	th:object="${empRecord}" method="POST">
 			<input type="hidden" th:field="*{id}" /> 

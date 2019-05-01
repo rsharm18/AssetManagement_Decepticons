@@ -26,7 +26,7 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_DeptSequence")
 	@SequenceGenerator(name = "id_DeptSequence", sequenceName = "DEPTS_ID_SEQ", allocationSize = 1)
 	@Column(name = "department_id")
-	private long deptId;
+	private int deptId;
 
 	@Column(name = "department_name")
 	private String deptName;
