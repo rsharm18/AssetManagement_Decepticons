@@ -49,7 +49,7 @@
 					<td th:text="${emp.hireDate}" />
 					<td th:text="${emp.phoneNumber}" />
 					<td th:text="${emp.salary}" />
-					<td>
+					<td width='100%'>
 						<a th:href="@{/employees/showForForUpdate(employeeid=${emp.id})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
 						<a th:href="@{/employees/deleteRecord(employeeid=${emp.id})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
 					</td>

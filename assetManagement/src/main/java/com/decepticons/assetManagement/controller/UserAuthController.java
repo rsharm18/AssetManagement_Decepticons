@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.decepticons.assetManagement.entity.UserAuth;
@@ -20,8 +24,9 @@ import com.decepticons.assetManagement.services.protocols.IUserAuthService;
 import com.decepticons.assetManagement.util.AssetManagementUtil;
 
 
-
 @Controller
+@Scope("session")
+@SessionAttributes("user")
 @RequestMapping("/userAuth")
 public class UserAuthController {
 
@@ -38,10 +43,18 @@ public class UserAuthController {
 		userCredentials = new ArrayList<UserAuth>(uAuthService.findAll());
 	}
 
+	@GetMapping("/login")
+	public String requestLogin(Model model)
+	{
+		System.out.println("from user auth");
+		return "userAuth/Login";
+	}
+	
 	@PostMapping("/login")
 	public String authenticateUser(@RequestParam("userName") String userName,@RequestParam("password") String password, Model model)
 	{
-		String nextPage="redirect:/Login.html";
+		String nextPage="userAuth/Login";//redirect:/Login.html?loginError=true";
+		String loginMessage="The userID or password is incorrect!";
 		
 		System.out.println(" userName "+userName+" password "+password);
 		
@@ -53,11 +66,24 @@ public class UserAuthController {
 			System.out.println("user "+user+" password match "+(user.getPassword().equals(password)));
 			if(user.getPassword().equals(password))
 			{
-				nextPage = "/main/Home";
+				loginMessage="Success!";
+				setUserAuth(user);
+				nextPage = "/main/Home";			
+			}
+			else
+			{
+			loginMessage="The password is incorrect ";
 			}
 		}
+		
+		model.addAttribute("loginErrorMsg", loginMessage);
 		System.out.println(" user "+user+" nextPage "+nextPage );
 		return nextPage;
+	}
+	
+	@ModelAttribute("user")
+	public UserAuth setUserAuth(UserAuth user) {
+		return user;
 	}
 	
 	/*
@@ -76,8 +102,12 @@ public class UserAuthController {
 	}
 	
 	@GetMapping("SideMenu")
-	public String getSideMenu(Model model)
+	public String getSideMenu(@SessionAttribute("user") UserAuth user, Model model )
 	{
+		System.out.println(" MOdel -- user :"+user);
+		
+		model.addAttribute("userName", user.getUserName());
+		
 		return "/main/SideMenu";
 	}
 	
@@ -112,7 +142,7 @@ public class UserAuthController {
 		
 		model.addAttribute("empRecord", userAuth);
 		
-		return "userCredentials/UserAuthForm";
+		return "userAuth/UserAuthForm";
 	}
 	
 	@PostMapping("/save")
@@ -124,7 +154,7 @@ public class UserAuthController {
 		uAuthService.save(userAuth);
 		
 		System.out.println("Saved "+userAuth);
-		return "redirect:/userCredentials/list";
+		return "redirect:/userAuth/list";
 	}
 	
 	@GetMapping("/showForForUpdate")
@@ -136,7 +166,7 @@ public class UserAuthController {
 		
 		model.addAttribute("empRecord",userAuth);
 		
-		return "userCredentials/UserAuthForm";
+		return "userAuth/UserAuthForm";
 	}
 	
 	@GetMapping("/deleteRecord")
@@ -147,7 +177,7 @@ public class UserAuthController {
 		uAuthService.deleteById(Id);
 		
 		System.out.println("Deleted "+userAuth);
-		return "redirect:/userCredentials/list";
+		return "redirect:/userAuth/list";
 	}
 	
 	
