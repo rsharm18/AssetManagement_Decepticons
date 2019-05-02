@@ -25,10 +25,10 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_DeptSequence")
 	@SequenceGenerator(name = "id_DeptSequence", sequenceName = "DEPTS_ID_SEQ", allocationSize = 1)
-	@Column(name = "dept_id")
-	private long deptId;
+	@Column(name = "department_id")
+	private int deptId;
 
-	@Column(name = "dept_name")
+	@Column(name = "department_name")
 	private String deptName;
 
 	// bi-directional many-to-one association to Employee

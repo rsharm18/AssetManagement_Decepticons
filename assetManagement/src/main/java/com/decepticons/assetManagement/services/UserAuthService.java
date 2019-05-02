@@ -53,7 +53,8 @@ public class UserAuthService implements IUserAuthService {
 			return user;
 		}
 		
-		throw new RuntimeException("UserAuth not found witn userName=" + userName);
+		return null;
+		//throw new RuntimeException("UserAuth not found witn userName=" + userName);
 		
 	}
 	

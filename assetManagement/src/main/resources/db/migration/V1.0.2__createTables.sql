@@ -65,19 +65,37 @@ CREATE TABLE requesttypeemp (
  
   
   
-CREATE TABLE employee (
-  employee_id Number,
+CREATE TABLE Employees (
+  employee_id Number not null,
+  dept_id Number default 300,
+  role_id Number default 200,
+  
   first_name varchar(45) DEFAULT NULL,
   last_name varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
---  change 1 started
-  department_id Number DEFAULT NULL,
---  change  1 ended 
+  
+--  hire_date date DEFAULT '1986-04-12',
+--  end_date date DEFAULT '2140-04-12',
+  
+  hire_date date DEFAULT to_date('04-12-1986', 'dd/mm/YYYY'),
+  end_date date DEFAULT to_date('04-12-2140', 'dd/mm/YYYY') ,
+  
+  phone_number VARCHAR2(20) DEFAULT '00000000',
+  salary Number DEFAULT 190000,
+ 
+  user_name VARCHAR2(20) not null,
+  --password VARCHAR2(20) not null,
+  
   PRIMARY KEY (employee_id)
-) ;
+);
 
+create Table Roles(
+role_id Number not null,
+role_name varchar(50),
+primary key (role_id)
+);
 
-CREATE TABLE department(
+CREATE TABLE departments(
     department_id Number,
     department_name varchar(45) DEFAULT NULL,
     department_manager Number ,
@@ -94,9 +112,7 @@ CREATE TABLE department(
 CREATE TABLE department_manager(
 department_id Number,
 employee_id Number,
-PRIMARY KEY(department_id,employee_id),
-CONSTRAINT FK_EmpID FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-CONSTRAINT FK_deptID FOREIGN KEY (department_id) REFERENCES department(department_id)
+PRIMARY KEY(department_id)
 );
 --END OF CHANGE 2-------------
 
@@ -121,9 +137,6 @@ CREATE TABLE request (
   assigned_to varchar(45) DEFAULT NULL,
   assigned_date Date DEFAULT NULL,
   closed_before Date DEFAULT (SYSDATE + 10),
-  PRIMARY KEY (request_id),
-  CONSTRAINT FK_RequestEMP FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-  CONSTRAINT FK_RequestTransTo FOREIGN KEY (new_owner_empid) REFERENCES employee(employee_id),
-  CONSTRAINT FK_RequestDeptID FOREIGN KEY (department_id) REFERENCES department(department_id)
+  PRIMARY KEY (request_id)
   
 ) ;
