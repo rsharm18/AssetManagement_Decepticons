@@ -86,7 +86,7 @@ CREATE TABLE Employees (
   user_name VARCHAR2(20) not null,
   --password VARCHAR2(20) not null,
   
-  PRIMARY KEY (employee_id , user_name)
+  PRIMARY KEY (employee_id)
 );
 
 create Table Roles(
