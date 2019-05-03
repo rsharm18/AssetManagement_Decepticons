@@ -150,4 +150,9 @@ public class EmployeeService implements IEmployeeService {
 
 	}
 
+@Override
+		public List<Employee> findByDepartment(Department dept) {
+			// TODO Auto-generated method stub
+			return empRepo.findByDepartment(dept);
+		}
 }

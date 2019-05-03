@@ -2,6 +2,7 @@ package com.decepticons.assetManagement.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -25,11 +26,13 @@ public class DepartmentController {
 
 	@Autowired
 	private IDepartmentService deptService;
+	@Autowired
 	private IEmployeeService empService;
 	
 	private List<Department> departments;
-	private Employee man;
+
 	private String msg = "secret2";
+	
 	
 	@PostConstruct
 	public void loadData()
@@ -44,16 +47,17 @@ public class DepartmentController {
 	public String listDepartments(Model model)
 	{
 		loadData();
-		model.addAttribute("msg", msg);
 		model.addAttribute("departments", departments);
-//		Employee man = deptService.findManagerById();
-		
 		return "list-Departments";		
 	}
 	
-//	public String findManager(@RequestParam("employeeid") int id, Model model) {
-//		man = empService.findById(id);	
-//		model.addAttribute("man", man);
-//		return "manager";
-//	}
+	@GetMapping("/detail")
+	public String deptDetail(@RequestParam("deptid") int deptid, Model model) {
+		Department dept = deptService.findById(deptid);
+		List<Employee> empList = empService.findByDepartment(dept);
+		model.addAttribute("dept", dept);
+		model.addAttribute("empList", empList);
+		
+		return "departments/DepartmentDetail";
+	}
 }
