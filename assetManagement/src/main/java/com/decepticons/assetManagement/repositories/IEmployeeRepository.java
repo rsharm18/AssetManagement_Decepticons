@@ -12,4 +12,6 @@ import com.decepticons.assetManagement.entity.Employee;
 @RepositoryRestResource
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 	public List<Employee> findByDepartment(Department dept);
+	
+	public Employee findByUserName(String userName);
 }

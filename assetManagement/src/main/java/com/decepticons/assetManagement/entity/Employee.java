@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -36,6 +37,9 @@ public class Employee {
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "dob")
+	private Date dob;
+
 	@Column(name = "end_date")
 	//@DateTimeFormat(pattern = "dd/mm/YY")
 	private Date endDate;
@@ -57,22 +61,33 @@ public class Employee {
 	@JoinColumn(name = "dept_id")
 	private Department department;
 
-	
 	@Column(name = "user_Name")
 	private String userName;
-	
-	@OneToOne(mappedBy = "manager")
-    private Department dept;
-	
-//	@Column(name = "password")
-//	private String password;
-	
-	//define toString
+
+	@Column(name = "ssn_no")
+	private String SSNInfo;
+
+	@OneToOne
+	@JoinColumn(name="reporting_manager")
+	private Employee manager;
+
+	// define toString
 	@Override
 	public String toString() {
+		System.out.println("Manager -- "+getManager()+" null ? "+(getManager()!=null));
+		System.out.println("Mgr info" +(getManager()!=null?getManager().getId()+" - "+getManager().getName():"-NA"));
+		
 		return "Employee [getId()=" + getId() + ", getFirst_name()=" + getFirstname() + ", getLast_name()="
-				+ getLastname() + ", getEmail()=" + getEmail() + ", getDept()=" + getDepartment() + "]";
+				+ getLastname() + ", getEmail()=" + getEmail() + ", getDept()=" + getDepartment() +", manager()=" + getManagerName()+"]";
+	}
+
+	public String getName() {
+		return firstname + " " + lastname;
 	}
 	
-	
+	public String getManagerName()
+	{
+		return (getManager()!=null?getManager().getName():"-NA");
+	}
+
 }
