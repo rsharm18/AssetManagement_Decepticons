@@ -30,15 +30,25 @@ public class Department {
 
 	@Column(name = "department_name")
 	private String deptName;
-
+	
+//	@Column(name = "department_manager")
+//	private long deptManager;
+	
+	
+	@OneToOne
+    @JoinColumn(name = "department_manager")
+    private Employee manager;
+	
 	// bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees;
 	
+
+	
 	@Override
 	public String toString()
 	{
-		return getDeptId()+" - "+getDeptName();
+		return getDeptId()+" - "+getDeptName() + "-" + getManager() ;
 	}
 
 }

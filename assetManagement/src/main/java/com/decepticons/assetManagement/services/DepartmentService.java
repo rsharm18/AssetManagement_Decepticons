@@ -3,6 +3,8 @@ package com.decepticons.assetManagement.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +30,15 @@ public class DepartmentService implements IDepartmentService{
 		return deptRepo.findAll();
 	}
 	
-	public Optional<Employee> findManagerById(int id) {
-		Optional<Employee> optionalEmployee = empRepo.findById(id);
-		return optionalEmployee;
+	@Override
+	public Department findById(int id) {
+		Optional<Department> dept = deptRepo.findById(id);
+		if(dept.isPresent()) {
+			return dept.get();
+		}
+		else {
+			throw new RuntimeException("Department not found with ID = " + id);
+		}
 	}
 	
 //	public Optional<Employee> findManagerById(int id) {
