@@ -15,4 +15,6 @@ public interface IEmployeeService {
 	public void deleteById(int id);
 	public void updateEmployee(Employee emp);
 	public List<Employee> findByDepartment(Department dept);
+	
+	public Employee findByUserName(String userName);
 }

@@ -16,9 +16,9 @@
 </head>
 <body width="50%" align="center">
 
-	&nbsp;&nbsp;Welcome <b><span th:text="${userName}"></span></b><br>
-	&nbsp;&nbsp;Manager<b>Name</b><br>
-	&nbsp;&nbsp;Submit a New Request<br>
+	&nbsp;&nbsp;Welcome <b><span th:text="${employee.getName()}"></span></b><br>
+	&nbsp;&nbsp;Manager : <b><span th:text="${employee.getManagerName()}"></span></b><br>
+	&nbsp;&nbsp;<a href="/requests/showFormForAdd" target="MAIN">Submit a New Request</a><br>
 </body>
 
 
