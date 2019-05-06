@@ -68,8 +68,8 @@ public class EmployeeService implements IEmployeeService {
 			System.out.println("username " + userName);
 			employee.setUserName(userName);
 //			employee.setPassword(userName);
-			//employee.setDepartment(dept);
-			//employee.setRole(role);
+			employee.setDepartment(dept);
+			employee.setRole(role);
 		}
 		userName = employee.getUserName();
 
@@ -98,7 +98,6 @@ public class EmployeeService implements IEmployeeService {
 			empRepo.deleteById(id);
 		}
 
-	}
 
 	/**
 	 * updates only selcted fields
@@ -150,14 +149,4 @@ public class EmployeeService implements IEmployeeService {
 
 	}
 
-	@Override
-	public List<Employee> findByDepartment(Department dept) {
-		// TODO Auto-generated method stub
-		return empRepo.findByDepartment(dept);
-	}
-
-	@Override
-	public Employee findByUserName(String userName) {
-		return empRepo.findByUserName(userName);
-	}
 }

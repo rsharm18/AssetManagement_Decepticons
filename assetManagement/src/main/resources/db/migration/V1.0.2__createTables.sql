@@ -74,21 +74,19 @@ CREATE TABLE Employees (
   last_name varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
   
-  dob date DEFAULT to_date('04-12-1986', 'dd/mm/YYYY'),
+--  hire_date date DEFAULT '1986-04-12',
+--  end_date date DEFAULT '2140-04-12',
+  
   hire_date date DEFAULT to_date('04-12-1986', 'dd/mm/YYYY'),
   end_date date DEFAULT to_date('04-12-2140', 'dd/mm/YYYY') ,
   
   phone_number VARCHAR2(20) DEFAULT '00000000',
   salary Number DEFAULT 190000,
  
-  user_name VARCHAR2(20) not null UNIQUE,
-  
-  ssn_no VARCHAR2(20) UNIQUE,
-  reporting_manager Number,
-  
+  user_name VARCHAR2(20) not null,
   --password VARCHAR2(20) not null,
   
-  PRIMARY KEY (employee_id)
+  PRIMARY KEY (employee_id , user_name)
 );
 
 create Table Roles(
