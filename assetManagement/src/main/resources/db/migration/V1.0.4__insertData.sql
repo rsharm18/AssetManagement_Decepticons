@@ -1,6 +1,6 @@
-insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'Employee');
-insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'Manager');
-insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'HR');
+insert into Roles(role_id, role_name, role_access) values(ROLES_ID_SEQ.NEXTVAL,'Employee', 1);
+insert into Roles(role_id, role_name, role_access) values(ROLES_ID_SEQ.NEXTVAL,'Manager', 2);
+insert into Roles(role_id, role_name, role_access) values(ROLES_ID_SEQ.NEXTVAL,'HR', 3);
 -- inert into Dept table
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'HR');
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'IT');
