@@ -20,13 +20,22 @@ public class Role {
 	@Setter
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_RoleSequence")
-	@SequenceGenerator(name = "id_RoleSequence", sequenceName = "ROLES_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_Sequence")
+	@SequenceGenerator(name = "id_Sequence", sequenceName = "ROLES_ID_SEQ", allocationSize = 1)
 	@Column(name = "role_id")
-	private long roleId;
+	private long id;
 
 	@Column(name = "role_name")
 	private String roleName;
+	
+	@Column(name = "role_access")
+	private String roleAccess;
+	
+	@Override
+	public String toString() {
+		return "Role [getId()="+ getId() + ", getRoleName()=" + getRoleName() + ", getRoleAccess()=" + getRoleAccess() + "]";
+				}
+	
 
 
 }

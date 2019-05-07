@@ -22,16 +22,15 @@
 		<a th:href="@{/roles/list}" class="btn btn-primary btn-sm mb-3">
 			Back </a>
 		<form name="MAINFORM" action="#" th:action="@{/roles/save}"
-			th:object="${reqRecord}" method="POST">
-			<input type="hidden" th:field="*{id}" /> 
-			<input class="form-control mb-4 col-4" type="text" th:field="*{rolename}"
-				placeholder="Role Name" /> 
+			th:object="${roleRecord}" method="POST">
+			<input class="form-control mb-4 col-4" type="text" th:field="*{id}"
+				placeholder="Role ID" /> 
 			<input class="form-control mb-4 col-4"
-				type="text" th:field="*{access_level}" placeholder="Access level" /> 
+				type="text" th:field="*{roleName}" placeholder="Role Name" /> 
 				
 			<input
-				class="form-control mb-4 col-4" type="text" th:field="*{description}"
-				placeholder="Description" />
+				class="form-control mb-4 col-4" type="text" th:field="*{roleAccess}"
+				placeholder="Access Level" />
 
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>

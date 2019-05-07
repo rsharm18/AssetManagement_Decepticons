@@ -16,6 +16,7 @@ public class RoleService implements IRoleService
 	@Autowired
 	private IRoleRepository roleRepo;
 	public RoleService(){}
+	
 	@Override
 	public List<Role> findAll() {
 		return roleRepo.findAll();
