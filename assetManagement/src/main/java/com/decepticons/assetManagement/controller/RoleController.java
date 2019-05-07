@@ -49,7 +49,6 @@ public class RoleController {
 	{
 		Role role = new Role();
 		model.addAttribute("roleRecord", role);
-		
 		return "roles/RoleForm";
 	}
 	
