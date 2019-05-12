@@ -1,5 +1,6 @@
 package com.decepticons.assetManagement.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Serializable{
 
 	// define fields
 	@Id
@@ -61,8 +62,8 @@ public class Employee {
 	@Column(name = "user_Name")
 	private String userName;
 	
-	@OneToOne(mappedBy = "manager")
-    private Department dept;
+//	@OneToOne(mappedBy = "manager")
+//    private Department dept;
 	
 //	@Column(name = "password")
 //	private String password;

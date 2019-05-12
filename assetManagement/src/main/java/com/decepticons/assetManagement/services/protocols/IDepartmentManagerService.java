@@ -6,12 +6,12 @@ import java.util.Optional;
 import javax.persistence.Query;
 
 import com.decepticons.assetManagement.entity.Department;
+import com.decepticons.assetManagement.entity.DepartmentManager;
 
+public interface IDepartmentManagerService {
 
-public interface IDepartmentService {
-	public List<Department> findAll();
-	public Department findById(int id);
-	
+	public List<Object[]> findByDeptman(int id);
+
 
 
 }

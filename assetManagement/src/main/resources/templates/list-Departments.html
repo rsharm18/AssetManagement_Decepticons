@@ -22,14 +22,13 @@
 			<thead class="thead-dark">
 				<tr>
 					<th>Department Name</th>
-					<th>Department Manager</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="dept : ${departments}">
-					<td th:text="${dept.deptName}" />
-					<td th:text="${dept.getManager().getFirstname() + ' ' + dept.getManager().getLastname() }" />
+					<td th:text="${dept.deptName}"></td>
+
 					<td>
 						<a th:href="@{/departments/detail(deptid=${dept.deptId})}" class="btn btn-primary btn-sm mb-3"> Details </a>
 					</td>

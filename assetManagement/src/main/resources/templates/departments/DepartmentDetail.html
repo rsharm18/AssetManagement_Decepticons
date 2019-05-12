@@ -18,19 +18,23 @@
 <div class="container">
 		<h1 th:text="${dept.deptName}"></h1>
 		<br/>
-		<h5>Manager</h5>
+		<h5>Department Managers</h5>
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Phone</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<td th:text="${dept.getManager().getFirstname() + ' ' + dept.getManager().getLastname() }" />
-				<td th:text="${dept.getManager().getEmail()}" />
-				<td th:text="${dept.getManager().getPhoneNumber()}" />
+				<tr th:each="man : ${manList}">
+					<td th:text="${man[0]} + ' ' +${man[1]}"/>
+					<td th:text="${man[2]}" />
+					<td th:text="${man[3]}" />
+					<td><a th:href="@{/remove}" class="btn btn-primary btn-sm mb-3"> Remove Manager</a></td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -42,6 +46,7 @@
 					<th>Name</th>
 					<th>Email</th>
 					<th>Phone</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,6 +54,7 @@
 					<td th:text="${emp.getFirstname() + ' ' + emp.getLastname() }" />
 					<td th:text="${emp.getEmail()}" />
 					<td th:text="${emp.getPhoneNumber()}" />
+					<td><a th:href="@{/remove}" class="btn btn-primary btn-sm mb-3"> Remove Employee</a></td>
 				</tr>
 			</tbody>
 		</table>

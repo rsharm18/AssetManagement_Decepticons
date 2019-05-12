@@ -5,4 +5,8 @@ Alter Table Employees
 Alter Table Employees 
  ADD FOREIGN KEY (dept_id) REFERENCES Departments(department_id);
 
+--Alter Table department_manager
+-- ADD FOREIGN KEY (employee_id) REFERENCES  Employees(employee_id);
 
+-- Alter Table department_manager
+-- ADD FOREIGN KEY (department_id) REFERENCES  Departments(department_id);

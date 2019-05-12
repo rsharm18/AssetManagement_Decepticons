@@ -2,11 +2,10 @@ insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'Employee');
 insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'Manager');
 insert into Roles(role_id, role_name) values(ROLES_ID_SEQ.NEXTVAL,'HR');
 -- inert into Dept table
-insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'HR');
-insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'IT');
+insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Human Resource');
+insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Information Techologies');
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Network');
-insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Law');
-insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Immigration');
+insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Legal');
 INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Boss'); 
 
 
@@ -21,10 +20,11 @@ insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hi
 
 --commit;
 
-INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Human Resource'); 
-INSERT INTO departments (department_id, department_name, department_manager) VALUES (2, 'Information Technology', 102); 
-INSERT INTO departments (department_id, department_name, department_manager) VALUES (3, 'Accounting', 103);  
-
+INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 100);
+INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 301, 101);
+INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 303, 102);
+INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 103);
+INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 300, 103);
 
 
 --CHANGE # 3 STARTED

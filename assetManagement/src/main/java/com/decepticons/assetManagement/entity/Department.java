@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The persistent class for the DEPARTMENTS database table.
@@ -17,7 +18,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "Departments")
-public class Department {
+public class Department implements Serializable{
 	
 	@Getter
 	@Setter
@@ -28,6 +29,7 @@ public class Department {
 	@Column(name = "department_id")
 	private int deptId;
 
+
 	@Column(name = "department_name")
 	private String deptName;
 	
@@ -35,9 +37,16 @@ public class Department {
 //	private long deptManager;
 	
 	
-	@OneToOne
-    @JoinColumn(name = "department_manager")
-    private Employee manager;
+//	@OneToOne
+//    @JoinColumn(name = "department_manager")
+//    private Employee manager;
+
+
+//	@OneToMany(targetEntity = DepartmentManager.class ,mappedBy = "deptman",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<DepartmentManager> deptManager;
+
+
+	
 	
 	// bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy = "department")
@@ -48,7 +57,8 @@ public class Department {
 	@Override
 	public String toString()
 	{
-		return getDeptId()+" - "+getDeptName() + "-" + getManager() ;
+		
+		return getDeptId() + " - "+getDeptName() + " - ";
 	}
 
 }
