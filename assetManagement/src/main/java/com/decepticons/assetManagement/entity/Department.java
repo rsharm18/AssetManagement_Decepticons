@@ -29,30 +29,12 @@ public class Department implements Serializable{
 	@Column(name = "department_id")
 	private int deptId;
 
-
 	@Column(name = "department_name")
 	private String deptName;
-	
-//	@Column(name = "department_manager")
-//	private long deptManager;
-	
-	
-//	@OneToOne
-//    @JoinColumn(name = "department_manager")
-//    private Employee manager;
-
-
-//	@OneToMany(targetEntity = DepartmentManager.class ,mappedBy = "deptman",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<DepartmentManager> deptManager;
-
-
-	
-	
+		
 	// bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees;
-	
-
 	
 	@Override
 	public String toString()

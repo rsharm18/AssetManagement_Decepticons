@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -62,8 +63,8 @@ public class Employee implements Serializable{
 	@Column(name = "user_Name")
 	private String userName;
 	
-//	@OneToOne(mappedBy = "manager")
-//    private Department dept;
+//	@OneToOne(mappedBy = "deptEmpId")
+//    private DepartmentManager deptMan;
 	
 //	@Column(name = "password")
 //	private String password;

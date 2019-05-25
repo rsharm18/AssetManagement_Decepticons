@@ -11,7 +11,10 @@ import com.decepticons.assetManagement.entity.Department;
 public interface IDepartmentService {
 	public List<Department> findAll();
 	public Department findById(int id);
-	
+	public void saveDepartment(Department dept);
+	public void updateDepartment(Department dept);
+	public List<Department> findByDeptName(String name);
+	public void deleteDepartment(Department dept);
 
 
 }

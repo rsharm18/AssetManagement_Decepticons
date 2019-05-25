@@ -20,11 +20,11 @@ insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hi
 
 --commit;
 
-INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 100);
-INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 301, 101);
-INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 303, 102);
-INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 103);
-INSERT INTO department_manager(deptManager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 300, 103);
+INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 100);
+INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 301, 101);
+INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 303, 102);
+INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 103);
+INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 300, 103);
 
 
 --CHANGE # 3 STARTED

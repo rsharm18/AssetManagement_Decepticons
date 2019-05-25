@@ -84,7 +84,7 @@ public class EmployeeService implements IEmployeeService {
 		}
 
 		empRepo.save(employee);
-
+		
 	}
 
 	@Override
@@ -151,8 +151,31 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-			public List<Employee> findByDepartment(Department dept) {
-				// TODO Auto-generated method stub
-				return empRepo.findByDepartment(dept);
-			}
+	public List<Employee> findByDepartment(Department dept) {
+		// TODO Auto-generated method stub
+		return empRepo.findByDepartment(dept);
+	}
+	
+	@Override
+	public void removeFromDepartment(Employee emp) {
+		emp.setDepartment(null);
+		empRepo.save(emp);
+	}
+	
+	@Override
+	public List<Employee> findByNullDepartment(){
+		return empRepo.findByDepartment(null);
+	}
+	
+	@Override
+	public void addToDepartment(Employee emp, Department dept) {
+		emp.setDepartment(dept);
+		empRepo.save(emp);
+	}
+	
+	@Override
+	public int countByDepartment(Department dept) {
+		List<Employee> empList = empRepo.findByDepartment(dept);
+		return empList.size();
+	}
 }

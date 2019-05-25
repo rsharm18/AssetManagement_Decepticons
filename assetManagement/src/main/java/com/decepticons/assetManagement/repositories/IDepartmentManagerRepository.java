@@ -18,13 +18,14 @@ import com.decepticons.assetManagement.entity.Employee;
 @RepositoryRestResource
 public interface IDepartmentManagerRepository extends JpaRepository<DepartmentManager, Integer> {
 	
-
 	
-//	@Query( value = "SELECT m.department_id, m.employee_id FROM department_manager m WHERE m.department_id = :id", nativeQuery = true)
+//	@Query( value = "SELECT e.first_name, e.last_name, e.email, e.phone_number "
+//			+ "FROM department_manager d "
+//			+ "LEFT JOIN employees e ON d.employee_id = e.employee_id "
+//			+ "WHERE d.department_id = :id", nativeQuery = true)		
 //	public List<Object[]> findByDeptman(@Param("id") int id); 
-	
-	@Query( value = "SELECT e.first_name, e.last_name, e.email, e.phone_number FROM department_manager d LEFT JOIN employees e ON d.employee_id = e.employee_id WHERE d.department_id = :id", nativeQuery = true)	
-	public List<Object[]> findByDeptman(@Param("id") int id); 
 
-//	public List<DepartmentManager> findByDeptman(Department dept);
+	public List<DepartmentManager> findByDeptId(Department d);
+
+	public DepartmentManager findByDeptIdAndDeptEmpId(Department d, Employee e);
 }

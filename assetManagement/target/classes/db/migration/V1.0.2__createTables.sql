@@ -57,7 +57,7 @@ CREATE TABLE departments(
 
 --CHANGE 2 STARTED--------
 CREATE TABLE department_manager(
-deptManager_id Number,
+deptmanager_id Number,
 department_id Number,
 employee_id Number,
 PRIMARY KEY(deptManager_id)
