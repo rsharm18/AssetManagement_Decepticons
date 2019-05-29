@@ -19,21 +19,27 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import com.decepticons.assetManagement.entity.Employee;
 import com.decepticons.assetManagement.entity.UserAuth;
+import com.decepticons.assetManagement.repositories.IEmployeeRepository;
+import com.decepticons.assetManagement.services.protocols.IEmployeeService;
 import com.decepticons.assetManagement.services.protocols.IUserAuthService;
 import com.decepticons.assetManagement.util.AssetManagementUtil;
 
 
 @Controller
+@RequestMapping("/userAuth")
 @Scope("session")
 @SessionAttributes("user")
-@RequestMapping("/userAuth")
 public class UserAuthController {
 
 	
 	
 	@Autowired
 	private IUserAuthService uAuthService;
+	
+	@Autowired
+	private IEmployeeService empService;
 	
 	private List<UserAuth> userCredentials;
 	
@@ -81,9 +87,13 @@ public class UserAuthController {
 		return nextPage;
 	}
 	
+	//set session user
 	@ModelAttribute("user")
-	public UserAuth setUserAuth(UserAuth user) {
-		return user;
+	public Employee setUserAuth(UserAuth user) {
+		
+		Employee emp = empService.findByUserName(user.getUserName());
+		System.out.println("setting session "+emp);
+		return emp;
 	}
 	
 	/*
@@ -95,6 +105,7 @@ public class UserAuthController {
         <frame src="http://localhost:8080/userAuth/Bottom" name="bottom">
 	 */
 	
+	//start homepage - html
 	@GetMapping("Header")
 	public String getHeader(Model model)
 	{
@@ -102,11 +113,11 @@ public class UserAuthController {
 	}
 	
 	@GetMapping("SideMenu")
-	public String getSideMenu(@SessionAttribute("user") UserAuth user, Model model )
+	public String getSideMenu(@SessionAttribute("user") Employee user, Model model )
 	{
 		System.out.println(" MOdel -- user :"+user);
 		
-		model.addAttribute("userName", user.getUserName());
+		model.addAttribute("employee", user);
 		
 		return "/main/SideMenu";
 	}
@@ -123,6 +134,7 @@ public class UserAuthController {
 		return "/main/Bottom";
 	}
 	
+	//stop homepage - html
 	
 	@GetMapping("/list")
 	public String listUserAuths(Model model)

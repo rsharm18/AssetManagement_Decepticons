@@ -155,6 +155,7 @@ public class EmployeeService implements IEmployeeService {
 		// TODO Auto-generated method stub
 		return empRepo.findByDepartment(dept);
 	}
+
 	
 	@Override
 	public void removeFromDepartment(Employee emp) {
@@ -177,5 +178,10 @@ public class EmployeeService implements IEmployeeService {
 	public int countByDepartment(Department dept) {
 		List<Employee> empList = empRepo.findByDepartment(dept);
 		return empList.size();
+
+	@Override
+	public Employee findByUserName(String userName) {
+		return empRepo.findByUserName(userName);
+
 	}
 }
