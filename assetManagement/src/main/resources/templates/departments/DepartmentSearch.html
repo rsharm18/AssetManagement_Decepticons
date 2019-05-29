@@ -13,12 +13,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>	
+
 <body>
 <div class="container">
-		<h2>Department List</h2>
+		<h2>Department Search Result</h2>
 		<br>
-		
+		<a th:href="@{/departments/list}" class="btn btn-primary btn-sm mb-3"> Back to listing </a>
+		<br>
+
 		<!-- Search bar -->
 		<form class="input-group mb-3" action="#" th:action="@{/departments/search}" method="POST">
   			
@@ -28,43 +30,12 @@
 		  	</div>
 		</form>
 		<!-- Search bar -->
-			
-
-		<canvas id="bar-chart-grouped" width="50" height="25"></canvas>
-			
-		<script th:inline="javascript">
-		new Chart(document.getElementById("bar-chart-grouped"), {
-		    type: 'bar',
-		    data: {
-		      labels: /*[[${graphName}]]*/,
-		      datasets: [
-		        {
-		          label: "Manager",
-		          backgroundColor: "rgba(255, 99, 132, 0.2)",
-		          data: /*[[${graphManData}]]*/,
-		          borderColor: "rgb(255, 99, 132)",
-		          borderWidth:2
-		        }, {
-		          label: "Employee",
-		          backgroundColor: "rgba(54, 162, 235, 0.2)",
-		          data: /*[[${graphEmpData}]]*/,
-		          borderColor: "rgb(54, 162, 235)",
-		          borderWidth:2
-		        }
-		      ]
-		    },
-		    options: {
-		      title: {display: true, text: 'Department Head Count'},
-		      scales: {yAxes: [{ticks: { min: 0, max: [[${scaleMax}]], stepSize:1 } }]}
-		    }
-		});
 		
-		</script>		
-
 		<br>
-		<a th:href="@{/departments/AddDepartment}" class="btn btn-primary btn-sm mb-3"> Add Department </a>
-		
-		<table class="table table-striped">
+		<div class="text-center">
+			<h2 th:if="${departments.empty}" th:text="'Could not found department &quot;' + ${name} + '&quot;'"></h2>
+		</div>
+		<table class="table table-striped" th:if="${!departments.empty}">
 			<thead class="thead-dark">
 				<tr>
 					<th>Department Name</th>
@@ -72,6 +43,7 @@
 				</tr>
 			</thead>
 			<tbody>
+
 				<tr th:each="dept : ${departments}">
 					<td th:text="${dept.deptName}"></td>
 

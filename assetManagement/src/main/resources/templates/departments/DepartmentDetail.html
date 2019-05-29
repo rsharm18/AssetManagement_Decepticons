@@ -16,39 +16,58 @@
 	
 <body>
 <div class="container">
-		<h1 th:text="${dept.deptName}"></h1>
+		<h1 th:text="${dept.deptName} + ' details'" ></h1>
 		<br/>
-		<h5>Manager</h5>
-		<table class="table table-bordered table-striped">
+		<a th:href="@{/departments/AddManager(deptid=${dept.deptId})}" class="btn btn-primary btn-sm mb-3"> Add Manager </a>
+		<h5>Department Managers</h5>	
+		
+		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
+					<th style="width: 10%">Name</th>
+					<th style="width: 30%">Email</th>
+					<th style="width: 15%">Phone</th>
+					<th style="width: 10%">Action</th>
 				</tr>
+			
 			</thead>
+		
 			<tbody>
-				<td th:text="${dept.getManager().getFirstname() + ' ' + dept.getManager().getLastname() }" />
-				<td th:text="${dept.getManager().getEmail()}" />
-				<td th:text="${dept.getManager().getPhoneNumber()}" />
+				<tr th:if="${manList.empty}"><td colspan="4" align="center">No Manager Available</td></tr>
+				<tr th:each="man : ${manList}">
+					
+					<td style="width: 10%" th:text="${man.deptEmpId.firstname} + ' ' + ${man.deptEmpId.lastname}"/>
+					<td style="width: 30%" th:text="${man.deptEmpId.email}" />
+					<td style="width: 15%" th:text="${man.deptEmpId.phoneNumber}" />
+					<td style="width: 10%">
+						<a th:href="@{/departments/removeManager(empid=${man.deptEmpId.id}, deptid=${dept.deptId})}" class="btn btn-outline-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to remove this manager'))) return false"> Remove Manager</a>
+						</td>
+				</tr>
+
 			</tbody>
+
 		</table>
 		
 		<br/><br/><br/>
+		<a th:href="@{/departments/AddEmployee(deptid=${dept.deptId})}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
 		<h5>Employees</h5>
-		<table class="table table-bordered table-striped">
+		
+		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
+					<th style="width: 10%">Name</th>
+					<th style="width: 30%">Email</th>
+					<th style="width: 15%">Phone</th>
+					<th style="width: 10%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
+				<tr th:if="${empList.empty}"><td colspan="4" align="center">No Employee Available</td></tr>
 				<tr th:each="emp : ${empList}">
-					<td th:text="${emp.getFirstname() + ' ' + emp.getLastname() }" />
-					<td th:text="${emp.getEmail()}" />
-					<td th:text="${emp.getPhoneNumber()}" />
+					<td style="width: 10%" th:text="${emp.getFirstname() + ' ' + emp.getLastname() }" />
+					<td style="width: 30%" th:text="${emp.getEmail()}" />
+					<td style="width: 15%" th:text="${emp.getPhoneNumber()}" />
+					<td style="width: 10%"><a th:href="@{/departments//removeEmployee(empid=${emp.Id}, deptid=${dept.deptId})}" class="btn btn-outline-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to remove this employee'))) return false"> Remove Employee</a></td>
 				</tr>
 			</tbody>
 		</table>

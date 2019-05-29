@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Asset Management</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+	<body>
+		<div class="container">
+			<br><br>
+			<h3 th:text="'Add Manager to ' + ${dept.deptName}"></h3><br>
+			<form name="MAINFORM" action="#" th:action="@{/departments/saveManager}" th:object="${man}" method="POST">
+				<input type="hidden" th:field="*{deptmanagerid}" />
+				<input type="hidden" th:field="*{deptId}" />
+				
+				<!-- <input class="form-control mb-4 col-4" type="text" th:field="*{deptEmpId}" placeholder="abc"/> -->
+					
+	            <select class="form-control mb-4 col-4" th:field="*{deptEmpId}" id="employee" >
+	                <option value="0" th:disabled="disabled">Select Employee</option>
+	                <option th:each="emp : ${manList}" 
+	                    th:text="${emp.firstname}"
+	                    th:value="${emp.Id}"
+	                    th:selected= "${emp.Id == man.deptEmpId}">
+	                </option>
+	            </select>
+				
+				<button type="submit" class="btn btn-info col-2">Add Manager</button>
+			</form>
+		</div>
+	</body>
+</html>

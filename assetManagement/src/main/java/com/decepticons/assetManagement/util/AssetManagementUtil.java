@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import com.decepticons.assetManagement.entity.DepartmentManager;
 import com.decepticons.assetManagement.entity.Employee;
 
 public class AssetManagementUtil {
@@ -69,5 +71,14 @@ public class AssetManagementUtil {
 		String userName = firstName.charAt(0)+(lastName.length()>=3?lastName.substring(0, 2):lastName)+userid;
 		
 		return userName;
+	}
+	
+	public List<Employee> availableManager (List<Employee> emp, List<DepartmentManager> man){
+		for(DepartmentManager m : man) {
+			if (emp.contains(m.getDeptEmpId())) {
+				emp.remove(m.getDeptEmpId());
+			}
+		}
+		return emp;
 	}
 }

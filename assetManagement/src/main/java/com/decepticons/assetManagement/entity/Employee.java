@@ -1,5 +1,6 @@
 package com.decepticons.assetManagement.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -19,7 +21,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Serializable{
 
 	// define fields
 	@Id
@@ -64,6 +66,7 @@ public class Employee {
 	@Column(name = "user_Name")
 	private String userName;
 
+
 	@Column(name = "ssn_no")
 	private String SSNInfo;
 
@@ -72,6 +75,7 @@ public class Employee {
 	private Employee manager;
 
 	// define toString
+
 	@Override
 	public String toString() {
 		System.out.println("Manager -- "+getManager()+" null ? "+(getManager()!=null));
