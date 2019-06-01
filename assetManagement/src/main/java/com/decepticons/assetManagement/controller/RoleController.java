@@ -53,7 +53,7 @@ public class RoleController {
 	}
 	
 	@PostMapping("/save")
-	public String saveRoleeData(@ModelAttribute("roleRecord") Role role)
+	public String saveRoleData(@ModelAttribute("roleRecord") Role role)
 	{
 		roleService.save(role);
 		
@@ -61,7 +61,7 @@ public class RoleController {
 		return "redirect:/roles/list";
 	}
 	
-	@GetMapping("/showForForUpdate")
+	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("roleid") int Id, Model model)
 	{
 		Role role = roleService.findById(Id);
@@ -79,6 +79,25 @@ public class RoleController {
 		
 		System.out.println("Deleted "+role);
 		return "redirect:/roles/list";
+	}
+	
+	@GetMapping("/search")
+	public String search(@ModelAttribute("roleName") Role role) {
+		ArrayList<Role> searchList = new ArrayList<Role>();
+		for (Role r: roles) {
+			if(role.getRoleName()==r.getRoleName()) {
+				searchList.add(r);
+			}
+		}
+		roles = searchList;
+		return "/roles/RoleSearch";
+	}
+	
+	@GetMapping("/manage-Roles")
+	public String showManageForm(Model model) {
+		Role role = new Role();
+		model.addAttribute("roleRecord", role);
+		return "manage-Roles";
 	}
 	
 	

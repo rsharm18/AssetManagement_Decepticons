@@ -31,7 +31,7 @@ public class RoleService implements IRoleService
 		}
 		else
 		{
-			throw new RuntimeException("Role not found witn ID=" + Id); 
+			throw new RuntimeException("Role not found with ID=" + Id); 
 		}
 	}
 

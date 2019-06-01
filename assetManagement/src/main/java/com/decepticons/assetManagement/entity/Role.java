@@ -23,7 +23,7 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_Sequence")
 	@SequenceGenerator(name = "id_Sequence", sequenceName = "ROLES_ID_SEQ", allocationSize = 1)
 	@Column(name = "role_id")
-	private long id;
+	private int id;
 
 	@Column(name = "role_name")
 	private String roleName;
