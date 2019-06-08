@@ -158,8 +158,8 @@ public class EmployeeService implements IEmployeeService {
 
 	
 	@Override
-	public void removeFromDepartment(Employee emp) {
-		emp.setDepartment(null);
+	public void removeFromDepartment(Employee emp, Department resourcePool) {
+		emp.setDepartment(resourcePool);
 		empRepo.save(emp);
 	}
 	
@@ -178,10 +178,15 @@ public class EmployeeService implements IEmployeeService {
 	public int countByDepartment(Department dept) {
 		List<Employee> empList = empRepo.findByDepartment(dept);
 		return empList.size();
+	}
 
 	@Override
 	public Employee findByUserName(String userName) {
 		return empRepo.findByUserName(userName);
-
+	}
+	
+	@Override
+	public List<Employee> searchResourcePool(String name, Department dept){
+		return empRepo.findByFirstnameIgnoreCaseContainingAndDepartment(name, dept);	
 	}
 }

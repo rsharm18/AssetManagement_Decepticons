@@ -7,7 +7,7 @@ insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXT
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Network');
 insert into Departments(department_id, department_name) values(DEPTS_ID_SEQ.NEXTVAL,'Legal');
 INSERT INTO departments (department_id, department_name) VALUES (DEPTS_ID_SEQ.NEXTVAL, 'Boss'); 
-
+INSERT INTO departments (department_id, department_name) VALUES (999, 'Resource Pool');
 
 --commit;
 
@@ -23,6 +23,19 @@ insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hi
 insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,300,200,'ryan','D','ryan.d@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),455329099,'ryn123',to_date('04/12/1986', 'dd/mm/YYYY'),80000,'123-frd-3467',100);
 insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,303,200,'Juan','P','Juan.p@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6725329099,'jua123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34097',101);
 insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,304,200,'Abhi','T','abhi.t@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),0985329099,'t123',to_date('04/12/1986', 'dd/mm/YYYY'),120000,'123-frd-34167',102);
+
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Kuan','a','kuan.a@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6725329099,'Kuan123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34010',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Jen','g','Jen.g@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),3123229099,'Jen123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34011',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Ben','a','Ben.a@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),1423229099,'Ben123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34012',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Jeff','V','Jeff.V@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),1235329099,'Jeff123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34013',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Jack','E','Jack.E@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6712329099,'Jack123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34014',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Alex','E','Alex.e@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6725312399,'Alex123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34015',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Mike','K','Mike.k@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6123329099,'Mike123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34016',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Donald','D','Donald.d@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6725123099,'Donald123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34017',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Rose','a','Rose.a@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),5675329099,'Rose123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34018',101);
+insert into Employees (employee_id,dept_id,role_id,first_name,last_name,email,hire_date,end_date,phone_number,user_name,dob,salary,ssn_no,reporting_manager) values(EMP_ID_SEQ.NEXTVAL,999,200,'Wendy','J','Wendy.j@gmail.com',to_date('04/12/1986', 'dd/mm/YYYY'),to_date('04/12/2100', 'dd/mm/YYYY'),6725567099,'Wendy123',to_date('04/12/1986', 'dd/mm/YYYY'),100000,'123-frd-34019',101);
+
+
 --commit;
 
 INSERT INTO department_manager(deptmanager_id, department_id, employee_id) VALUES(DEPTMAN_ID_SEQ.NEXTVAL, 302, 100);

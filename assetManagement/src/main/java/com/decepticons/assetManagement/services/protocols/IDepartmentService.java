@@ -13,8 +13,9 @@ public interface IDepartmentService {
 	public Department findById(int id);
 	public void saveDepartment(Department dept);
 	public void updateDepartment(Department dept);
-	public List<Department> findByDeptName(String name);
+	public List<Department> findByDeptNameIgnoreCaseContaining(String name);
 	public void deleteDepartment(Department dept);
+	Department findResourcePool();
 
 
 }

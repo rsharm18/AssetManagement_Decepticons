@@ -42,33 +42,30 @@ public class DepartmentService implements IDepartmentService{
 	}
 	
 	@Override
-	public List<Department> findByDeptName(String name) {
-		List<Department> dept = deptRepo.findByDeptName(name);
+	public List<Department> findByDeptNameIgnoreCaseContaining(String name) {
+		List<Department> dept = deptRepo.findByDeptNameIgnoreCaseContaining(name);
 		return dept;
 	}
 	
 	
 	@Override
 	public void saveDepartment(Department dept) {
-		System.out.println("---------------------------");
-		System.out.println(dept.getDeptId());
-		System.out.println(dept.getDeptName());
 		deptRepo.save(dept);
 	}
 	
 	@Override
 	public void updateDepartment(Department dept) {
-		System.out.println("--------------------------- in service update");
-		System.out.println(dept.getDeptId());
-		System.out.println(dept.getDeptName());
 		deptRepo.save(dept);
 	}
 
 	@Override
 	public void deleteDepartment(Department dept) {
-		System.out.println("--------------------------- in service delete");
-		System.out.println(dept.getDeptId());
-		System.out.println(dept.getDeptName());
 		deptRepo.delete(dept);
+	}
+	
+	@Override
+	public Department findResourcePool() {
+		Department dept = deptRepo.findByDeptName("Resource Pool");
+		return dept;		
 	}
 }

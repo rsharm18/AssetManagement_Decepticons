@@ -64,8 +64,7 @@ public class DepartmentController {
 		model.addAttribute("graphName", graphName);
 		model.addAttribute("graphEmpData", graphEmpData);
 		model.addAttribute("graphManData", graphManData);
-		model.addAttribute("scaleMax", Math.max(Collections.max(graphEmpData), Collections.max(graphManData))+2);
-		
+		model.addAttribute("scaleMax", Math.max(Collections.max(graphEmpData), Collections.max(graphManData))+2);	
 		return "list-Departments";		
 	}
 	
@@ -108,7 +107,7 @@ public class DepartmentController {
 	
 	@PostMapping("/search")
 	public String searchByName(@RequestParam("deptName") String name, Model model) {
-		List<Department> departments = deptService.findByDeptName(name);
+		List<Department> departments = deptService.findByDeptNameIgnoreCaseContaining(name);
 		model.addAttribute("name", name);
 		model.addAttribute("departments", departments);
 		return "/departments/DepartmentSearch";
@@ -118,8 +117,10 @@ public class DepartmentController {
 	public String deleteDept(@RequestParam("deptid") int id) {
 		Department dept = deptService.findById(id);		
 		List<Employee> empList = empService.findByDepartment(dept);
+		List<Department> deptList = deptService.findByDeptNameIgnoreCaseContaining("resource pool");
+		Department resourcePool = deptList.get(0);
 		for(Employee e : empList) {
-			empService.removeFromDepartment(e);
+			empService.removeFromDepartment(e, resourcePool);
 		}		
 		List<DepartmentManager> manList = deptManService.findByDeptId(dept);
 		for(DepartmentManager m : manList) {
@@ -131,10 +132,7 @@ public class DepartmentController {
 	
 	@GetMapping("/AddManager")
 	public String addManager(@RequestParam("deptid") int id, Model model) {
-		DepartmentManager man = new DepartmentManager();
 		Department dept = deptService.findById(id);
-		man.setDeptId(dept);
-		model.addAttribute("man", man);
 		model.addAttribute("dept", dept);		
 		List<Employee> empList = empService.findAll();
 		List<DepartmentManager> manList = deptManService.findByDeptId(dept);
@@ -144,13 +142,16 @@ public class DepartmentController {
 			}
 		}
 		model.addAttribute("manList", empList);	
-		return "departments/DepartmentManagerForm";
+		return "departments/DepartmentManagerTable";
 	}
 	
-	@PostMapping("/saveManager")
-	public String saveMan(@ModelAttribute("man") DepartmentManager deptMan) {
-		deptManService.saveManager(deptMan);
-		return "redirect:/departments/detail?deptid=" + deptMan.getDeptId().getDeptId();
+	@GetMapping("/saveManager")
+	public String saveMan(@RequestParam("deptid") int id, @RequestParam("empid") int empid) {
+		DepartmentManager deptMan = new DepartmentManager();
+		deptMan.setDeptId(deptService.findById(id));
+		deptMan.setDeptEmpId(empService.findById(empid));
+		deptManService.saveManager(deptMan);	
+		return "redirect:/departments/detail?deptid=" + id;
 	}
 	
 	
@@ -165,21 +166,19 @@ public class DepartmentController {
 	
 	@GetMapping("/AddEmployee")
 	public String addEmployee(@RequestParam("deptid") int id, Model model) {
-		List<Employee> empList = empService.findByNullDepartment();
+		Department dept = deptService.findResourcePool();
+		List<Employee> empList = empService.findByDepartment(dept);
+		Department desDept = deptService.findById(id);
 		model.addAttribute("empList", empList);
-		Department dept = deptService.findById(id);
 		model.addAttribute("dept", dept);
-		Employee empDTO = new Employee();
-		model.addAttribute("empDTO", empDTO);
-		
-		return "/departments/DepartmentEmployeeForm";
+		model.addAttribute("desDept", desDept);		
+		return "/departments/DepartmentEmployeePool";
 	}
 	
-	@PostMapping("/saveEmployee")
-	public String saveEmployee(@RequestParam("deptid") int id, @ModelAttribute("empDTO") Employee empDTO) {
-		Employee emp = empService.findById(empDTO.getId());
+	@GetMapping("/saveEmployee")
+	public String saveEmployee(@RequestParam("deptid") int id, @RequestParam("empid") int empid) {
 		Department dept = deptService.findById(id);
-		emp.setDepartment(dept);
+		Employee emp = empService.findById(empid);
 		empService.addToDepartment(emp, dept);
 		return "redirect:/departments/detail?deptid=" +id;
 	}
@@ -187,12 +186,25 @@ public class DepartmentController {
 	@GetMapping("/removeEmployee")
 	public String removeEmployee(@RequestParam("empid") int empid, @RequestParam("deptid") int deptid) {
 		Employee emp = empService.findById(empid);
-		empService.removeFromDepartment(emp);
-		
+		List<Department> deptList = deptService.findByDeptNameIgnoreCaseContaining("resource pool");
+		Department resourcePool = deptList.get(0);
+		empService.removeFromDepartment(emp, resourcePool);		
 		return "redirect:/departments/detail?deptid=" + deptid;
+	}
+
+	@PostMapping("/resourceSearch")
+	public String searchResource(@RequestParam("deptid") int deptid, @RequestParam("resourceName") String name, Model model) {
+		List<Department> deptList = deptService.findByDeptNameIgnoreCaseContaining("resource pool");
+		Department resourcePool = deptList.get(0);
+		List<Employee> empList = empService.searchResourcePool(name, resourcePool);		
+		Department desDept = deptService.findById(deptid);
+		model.addAttribute("empList", empList);
+		model.addAttribute("desDept", desDept);	
+		return "/departments/DepartementResourceSearch";
 	}
 	
 }
+
 
 
 
