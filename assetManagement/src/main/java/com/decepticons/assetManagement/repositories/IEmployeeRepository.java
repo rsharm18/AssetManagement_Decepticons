@@ -14,4 +14,6 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 	public List<Employee> findByDepartment(Department dept);
 	
 	public Employee findByUserName(String userName);
+	
+	public List<Employee> findByFirstnameIgnoreCaseContainingAndDepartment(String name, Department dept);
 }

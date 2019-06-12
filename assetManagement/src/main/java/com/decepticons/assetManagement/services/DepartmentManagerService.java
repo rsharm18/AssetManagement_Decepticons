@@ -33,22 +33,14 @@ public class DepartmentManagerService implements IDepartmentManagerService{
 	
 	@Override
 	public List<DepartmentManager> findByDeptId(Department d) {
-		System.out.println("calling custom method");
 		return deptManRepo.findByDeptId(d);
 	}
 	
 	@Override
 	public void deleteManagerById(int id) {
-		System.out.println("======== delete manager=======");
 		deptManRepo.deleteById(id);
 	}
 
-//	@Override
-//	public List<Object[]> findByDeptman(int id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
 	@Override
 	public void saveManager(DepartmentManager deptMan) {
 		deptManRepo.save(deptMan);

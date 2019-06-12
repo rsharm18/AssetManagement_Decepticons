@@ -12,6 +12,8 @@ import com.decepticons.assetManagement.entity.Department;
 @RepositoryRestResource
 public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
 
-	public List<Department> findByDeptName(String name);
+	public List<Department> findByDeptNameIgnoreCaseContaining(String name);
+
+	public Department findByDeptName(String name);
 
 }

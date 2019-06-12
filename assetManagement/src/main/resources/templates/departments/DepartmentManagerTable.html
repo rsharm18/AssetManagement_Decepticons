@@ -1,0 +1,61 @@
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Asset Management</title>
+
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+	<body>
+	
+	         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Add Manager</h3>
+              </div>
+
+            </div>
+            
+          <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                   	<a th:href="@{/departments/detail(deptid=${dept.deptId})}" class="btn btn-primary btn-sm mb-3">BACK </a>
+                       <div class="clearfix"></div>
+                  </div>
+	
+	
+	
+	
+<div class="container">
+
+		
+		<h3>Available Manager</h3>
+
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th style="width: 10%">Name</th>
+					<th style="width: 30%">Email</th>
+					<th style="width: 15%">Phone</th>
+					<th style="width: 20%">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${manList.empty}"><td colspan="4" align="center">No Manager Available</td></tr>
+				<tr th:each="man : ${manList}">
+					<td style="width: 10%" th:text="${man.getFirstname() + ' ' + man.getLastname() }" />
+					<td style="width: 30%" th:text="${man.getEmail()}" />
+					<td style="width: 15%" th:text="${man.getPhoneNumber()}" />
+					<td style="width: 10%"><a th:href="@{/departments/saveManager(deptid=${dept.deptId}, empid=${man.id})}" class="btn btn-outline-primary btn-sm mb-3" th:text="'Add to ' + ${dept.deptName}"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</body>
+</html>

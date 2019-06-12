@@ -17,7 +17,7 @@ public interface IEmployeeService {
 	public List<Employee> findByDepartment(Department dept);
 
 
-	public void removeFromDepartment(Employee emp);
+	public void removeFromDepartment(Employee emp, Department resourcePool);
 
 	public List<Employee> findByNullDepartment();
 
@@ -28,4 +28,6 @@ public interface IEmployeeService {
 	
 	public Employee findByUserName(String userName);
 
+	public List<Employee> searchResourcePool(String name, Department dept);
+	
 }
