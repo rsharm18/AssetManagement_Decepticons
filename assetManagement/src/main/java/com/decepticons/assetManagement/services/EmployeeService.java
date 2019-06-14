@@ -79,6 +79,7 @@ public class EmployeeService implements IEmployeeService {
 
 			userAuthService.save(userAuth);
 		}
+
 		return empRepo.save(employee);
 
 	}
@@ -160,38 +161,11 @@ public class EmployeeService implements IEmployeeService {
 		return empRepo.findByDepartment(dept);
 	}
 
-	
-	@Override
-	public void removeFromDepartment(Employee emp, Department resourcePool) {
-		emp.setDepartment(resourcePool);
-		empRepo.save(emp);
-	}
-	
-	@Override
-	public List<Employee> findByNullDepartment(){
-		return empRepo.findByDepartment(null);
-	}
-	
-	@Override
-	public void addToDepartment(Employee emp, Department dept) {
-		emp.setDepartment(dept);
-		empRepo.save(emp);
-	}
-	
-	@Override
-	public int countByDepartment(Department dept) {
-		List<Employee> empList = empRepo.findByDepartment(dept);
-		return empList.size();
-	}
-
 	@Override
 	public Employee findByUserName(String userName) {
 		return empRepo.findByUserName(userName);
 	}
-	@Override
-	public List<Employee> searchResourcePool(String name, Department dept){
-		return empRepo.findByFirstnameIgnoreCaseContainingAndDepartment(name, dept);	
-	}
+
 //	@Override
 //	public Integer countByDepartment(Department d) {
 //		// TODO Auto-generated method stub
@@ -275,4 +249,5 @@ public class EmployeeService implements IEmployeeService {
 
 		return empList;
 	}
+
 }

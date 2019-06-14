@@ -65,8 +65,7 @@ public class AssetManagementUtil {
 
 		return userName;
 	}
-	public List<Employee> availableManager (List<Employee> emp, List<DepartmentManager> man){
-		for(DepartmentManager m : man) {
+
 	public List<Employee> availableManager(List<Employee> emp, List<DepartmentManager> man) {
 		for (DepartmentManager m : man) {
 			if (emp.contains(m.getDeptEmpId())) {

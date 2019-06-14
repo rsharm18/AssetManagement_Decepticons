@@ -1,14 +1,5 @@
 
 
-CREATE TABLE requesttypeemp (
-	request_type_id Number,
-    request_type varchar(45) DEFAULT NULL
-  );
-  
-  CREATE TABLE requesttypesystemanalyst (
-	request_type_id Number,
-    request_type varchar(45) DEFAULT NULL
-  );
 
 
 -- Change History
@@ -30,7 +21,8 @@ CREATE TABLE requesttypeemp (
 --    request_type varchar(45) DEFAULT NULL
 --  );
 --  
--- ----CHANGE #3 END------------ 
+-- ----CHANGE #3 END------------
+ 
   
   
 CREATE TABLE Employees (
@@ -70,6 +62,7 @@ primary key (role_id)
 CREATE TABLE departments(
     department_id Number,
     department_name varchar(45) DEFAULT NULL,
+    department_manager Number ,
     PRIMARY KEY (department_id)
 --change 2 started--
 --    CONSTRAINT manager_key

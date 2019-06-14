@@ -28,49 +28,17 @@
  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" data-th-fragment="sidebar-menu">
    <div class="menu_section">
                 <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                 &nbsp;&nbsp;Welcome <b><span th:text="${session.user.getUser().getName()}"></span></b><br>
 				&nbsp;&nbsp;Reporting Manager : <b><span th:text="${session.user.getUser().getManagerName()}"></span></b><br>
 				&nbsp;&nbsp;Position &nbsp;&nbsp;&nbsp;: <b><span th:text="${session.user.getUser().getRole().getRoleName()}"></span></b><br>
 				&nbsp;&nbsp;LastLogin : <b><span th:text="${session.user.getLastLogin().toString()}"></span></b><br>
                 <ul class="nav side-menu">
                   <!-- <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-
                     <ul class="nav child_menu">
                       <li><a href="index.html">Dashboard</a></li>
                       <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
-
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-
-                    <li><a data-th-href = "@{../requests/showFormForAdd}">Add Request </a></li> 
-                    <li><a data-th-href = "@{../requesttypes/showFormForAdd}">Add Request Type </a></li> 
-                    <li><a  data-th-href = "@{../requestsubtypes/showFormForAdd}">Add Request SubType</a></li> 
-                    <li><a  data-th-href = "@{../requestsstatus/showFormForAdd}">Add Request Status</a></li>
-                    <li><a data-th-href = "@{../employees/showFormForAdd}"> Add Employee </a></li>
-                    <li><a data-th-href = "@{../departments/AddDepartment}"> Add Department </a></li>
-                   </ul>
-                  </li>
-                   <li><a><i class="fa fa-cogs"></i> Reports <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a data-th-href = "@{../requests/managers}">View Managers</a></li>
-                    </ul>
-                  </li> 
-                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                    <li><a data-th-href = "@{../requests/list}"> Request Table </a></li> 
-                    <li><a data-th-href = "@{../requesttypes/list}">Request Type Table </a></li> 
-                    <li><a  data-th-href = "@{../requestsubtypes/list}">Request SubType Table</a></li> 
-                    <li><a  data-th-href = "@{../requestsstatus/list}">Request SubType Table</a></li> 
-                    <li><a  data-th-href = "@{../employees/list}">Employee Table</a></li> 
-                    <li><a  data-th-href = "@{../departments/list}">Department Table</a></li> 
-                    </ul>
-                  </li>
-
                   </li> -->
                   <li><a><i class="fa fa-edit"></i> Request Management <span class="fa fa-chevron-down"></span></a>
 
@@ -138,7 +106,6 @@
 							</ul>
                          </div>
                      </li>
-
 <!--                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Chart JS</a></li>

@@ -1,6 +1,5 @@
 package com.decepticons.assetManagement.entity;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -22,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "employees")
-public class Employee implements Serializable{
+public class Employee {
 
 	public static Set<String> skipMethodsListFromPersist = new HashSet<String>();
 
@@ -72,7 +70,6 @@ public class Employee implements Serializable{
 	@Column(name = "user_Name")
 	private String userName;
 
-
 	@Column(name = "ssn_no")
 	private String sSNInfo;
 
@@ -81,7 +78,6 @@ public class Employee implements Serializable{
 	private Employee manager;
 
 	// define toString
-
 	@Override
 	public String toString() {
 		System.out.println("Manager -- " + getManager() + " null ? " + (getManager() != null));

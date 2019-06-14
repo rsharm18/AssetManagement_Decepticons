@@ -32,20 +32,19 @@ public class DepartmentManagerService implements IDepartmentManagerService{
 //	}
 	
 	@Override
-	public List<DepartmentManager> findByDeptId(Department d) {
 	public List<DepartmentManager> findAll(){
 		return deptManRepo.findAll();
 	}
 	
 	@Override
 	public List<DepartmentManager> findByDeptId(Department d) {
-		//System.out.println("calling custom method");
+		System.out.println("calling custom method");
 		return deptManRepo.findByDeptId(d);
 	}
 	
 	@Override
 	public void deleteManagerById(int id) {
-		//System.out.println("======== delete manager=======");
+		System.out.println("======== delete manager=======");
 		deptManRepo.deleteById(id);
 	}
 

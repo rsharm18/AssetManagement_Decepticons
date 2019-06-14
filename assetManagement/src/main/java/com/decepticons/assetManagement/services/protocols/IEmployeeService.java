@@ -19,6 +19,7 @@ public interface IEmployeeService {
 	public String updateEmployee(Employee emp);
 
 	public List<Employee> findByDepartment(Department dept);
+
 	public void removeFromDepartment(Employee emp, Department resourcePool);
 
 	public List<Employee> findByNullDepartment();
@@ -27,11 +28,6 @@ public interface IEmployeeService {
 
 	public int countByDepartment(Department dept);
 
-	
-	public Employee findByUserName(String userName);
-
-	public List<Employee> searchResourcePool(String name, Department dept);
-	
 	public Employee findByFirstnameAndLastname(String firstname, String lastname);
 
 	public List<Employee> findByManager(Employee manager);
@@ -47,4 +43,5 @@ public interface IEmployeeService {
 	public int countByRole(Role role);
 
 	public List<Employee> findByFirstnameOrLastnameOrRoleOrDepartmentOrUserNameAllIgnoreCase(String firstname, String lastname, Role role, Department department, String userName);
+
 }
