@@ -61,7 +61,15 @@ public class EmployeeService implements IEmployeeService {
 		String userName;
 		if (util.isNewUser(employee)) {
 
-			userName = util.generateUserName(employee, empRepo.findAll().size());
+			//logic for new empid
+			List<Employee> empList = empRepo.findAll();
+			int iNextId = -1;
+			if (empList.size() == 0) {
+				iNextId = 10;
+			} else {
+				iNextId = empList.get(empList.size() - 1).getId();
+			}
+			userName = util.generateUserName(employee, iNextId + empList.size());
 			System.out.println("username " + userName);
 			employee.setUserName(userName);
 //			employee.setPassword(userName);
@@ -90,7 +98,11 @@ public class EmployeeService implements IEmployeeService {
 		Employee emp = findById(id);
 		if (emp != null) {
 			UserAuth userAuth = userAuthRepo.findByUserNameEquals(emp.getUserName());
-			userAuthService.delete(userAuth);
+
+			System.out.println(" userAuth " + userAuth);
+
+			if (userAuth != null)
+				userAuthService.delete(userAuth);
 
 			empRepo.deleteById(id);
 		}

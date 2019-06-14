@@ -59,10 +59,11 @@ public class AssetManagementUtil {
 		String lastName = e.getLastname();
 		String firstName = e.getFirstname();
 
-		int userid = iCurrentNoOfEmp + 1;
+		int userid = iCurrentNoOfEmp + 10;
 
 		String userName = firstName.charAt(0) + (lastName.length() >= 3 ? lastName.substring(0, 2) : lastName).toLowerCase() + userid;
 
+		System.out.println("New username " + userid);
 		return userName;
 	}
 
