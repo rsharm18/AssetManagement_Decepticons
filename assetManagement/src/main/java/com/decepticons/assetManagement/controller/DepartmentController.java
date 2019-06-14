@@ -176,9 +176,11 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("/saveEmployee")
-	public String saveEmployee(@RequestParam("deptid") int id, @RequestParam("empid") int empid) {
+	public String saveEmployee(@RequestParam("deptid") int id, @RequestParam("empid") int empid,  @RequestParam("manid") int manid) {
 		Department dept = deptService.findById(id);
+		Employee man = empService.findById(manid);
 		Employee emp = empService.findById(empid);
+		emp.setManager(man);	
 		empService.addToDepartment(emp, dept);
 		return "redirect:/departments/detail?deptid=" +id;
 	}
