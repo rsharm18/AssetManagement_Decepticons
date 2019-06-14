@@ -2,6 +2,8 @@ package com.decepticons.assetManagement.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +18,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable{
+
+	public static Set<String> skipMethodsListFromPersist = new HashSet<String>();
 
 	// define fields
 	@Id
@@ -43,7 +46,7 @@ public class Employee implements Serializable{
 	private Date dob;
 
 	@Column(name = "end_date")
-	//@DateTimeFormat(pattern = "dd/mm/YY")
+	// @DateTimeFormat(pattern = "dd/mm/YY")
 	private Date endDate;
 
 	@Column(name = "hire_date")
@@ -51,6 +54,9 @@ public class Employee implements Serializable{
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
+
+	@Column(name = "gender")
+	private String gender;
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")
@@ -68,30 +74,49 @@ public class Employee implements Serializable{
 
 
 	@Column(name = "ssn_no")
-	private String SSNInfo;
+	private String sSNInfo;
 
 	@OneToOne
-	@JoinColumn(name="reporting_manager")
+	@JoinColumn(name = "reporting_manager")
 	private Employee manager;
 
 	// define toString
 
 	@Override
 	public String toString() {
-		System.out.println("Manager -- "+getManager()+" null ? "+(getManager()!=null));
-		System.out.println("Mgr info" +(getManager()!=null?getManager().getId()+" - "+getManager().getName():"-NA"));
-		
-		return "Employee [getId()=" + getId() + ", getFirst_name()=" + getFirstname() + ", getLast_name()="
-				+ getLastname() + ", getEmail()=" + getEmail() + ", getDept()=" + getDepartment() +", manager()=" + getManagerName()+"]";
+		System.out.println("Manager -- " + getManager() + " null ? " + (getManager() != null));
+		System.out.println("Mgr info" + (getManager() != null ? getManager().getId() + " - " + getManager().getName() : "-NA"));
+
+		return "Employee [getId()=" + getId() + ", getFirst_name()=" + getFirstname() + ", getLast_name()=" + getLastname() + ", getEmail()=" + getEmail() + ", getDept()=" + getDepartment()
+				+ ", manager()=" + getManagerName() + "]";
 	}
 
 	public String getName() {
 		return firstname + " " + lastname;
 	}
-	
-	public String getManagerName()
-	{
-		return (getManager()!=null?getManager().getName():"-NA");
+
+	public String getManagerName() {
+		return (getManager() != null ? getManager().getName() : "-NA");
+	}
+
+	public String getSSNLast4Digits() {
+		String temp = this.getSSNInfo();
+		if (temp != null && temp.trim().length() > 4) {
+			return "***-**-" + temp.substring(temp.trim().length() - 4);
+		}
+
+		return "-NA-";
+	}
+
+	static {
+		skipMethodsListFromPersist.add("getName");
+		skipMethodsListFromPersist.add("getManagerName");
+		skipMethodsListFromPersist.add("getId");
+		skipMethodsListFromPersist.add("getClass");
+		skipMethodsListFromPersist.add("getSSNLast4Digits");
+//		skipMethodsListFromPersist.add("getLastLoginDate");
+//		skipMethodsListFromPersist.add("setLastLoginDate");
+
 	}
 
 }

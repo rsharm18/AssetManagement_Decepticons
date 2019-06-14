@@ -1,61 +1,190 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" data-layout-decorate="~{main/layout}"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Thyeleaf Demo</title>
-
-<!-- Required meta tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
 
+<title>Employee Page</title>
+
+<script>
+	function validateInput() {
+		//alert("validateInput");
+		var obj = document.emp_Search;
+		var dept = obj.department;
+		var role = obj.role;
+		//var ssn = obj.ssn;
+		var name = obj.employeeName;
+		var userID = obj.userID;
+		
+		/* alert(" dept.selectedIndex "+dept.selectedIndex);
+		alert(" role.selectedIndex "+role.selectedIndex);
+		alert(" name.length "+name.value.length+" name "+name);
+		alert(" ssn.length "+ssn.value.length+" ssn "+ssn); */
+		
+		if (dept.selectedIndex == 0 && role.selectedIndex == 0
+				 && name.value.length == 0 && userID.value.length == 0 ) {
+			alert("Please enter some search criteria");
+			
+		}
+		/* else if(ssn.value.length > 0 && ssn.value.length < 4)
+			{
+				alert("Please enter 4 digits for SSN search criteria");
+				
+			} */
+		else
+			{
+				obj.submit();
+			}
+		}
+</script>
 
 </head>
 <body>
-	<!-- <a hred="http://localhost:8080/employees/list" class="btn btn-primary btn-sm mb-3"> Auth </a> -->
-	<div class="container">
-		<h3>Employee Directory</h3>
-		<a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
-		<table class="table table-bordered table-striped">
-			<thead class="thead-dark">
-				<tr>
-					<!--th>Employee ID</th> -->
-					<th>Name</th>
-					<th>Department</th>
-					<th>Employee Position</th>
-					<th>Email</th>
-					<th>User Name</th>
-					<th>Hire Date</th>
-					<th>End Date</th>
-					<th>Phone</th>
-					<th>Salary ($)</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="emp : ${employees}">
-					<!-- td th:text="${emp.id}" /> -->
-					<td th:text="${emp.firstname + ', '+emp.lastname}" />
-					<td th:text="${emp.getDepartment().getDeptName()}" />
-					<td th:text="${emp.role.roleName}" />
-					<td th:text="${emp.email}" />
-					<td th:text="${emp.userName}" />
-					<td th:text="${emp.endDate}" />
-					<td th:text="${emp.hireDate}" />
-					<td th:text="${emp.phoneNumber}" />
-					<td th:text="${emp.salary}" />
-					<td width='100%'>
-						<a th:href="@{/employees/showForForUpdate(employeeid=${emp.id})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
-						<a th:href="@{/employees/deleteRecord(employeeid=${emp.id})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	<!-- page content -->
+	<div class="right_col" role="main" data-layout-fragment="content">
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<h3>Employee Directory</h3>
+				</div>
+		</div>
+				<!-- <div class="title_right">
+					<div
+						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search for..."> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							</span>
+						</div>
+					</div>
+				</div> -->
+				
+				<div class="clearfix"></div>
+				
+				<div class="alert alert-danger" th:text="${pageMsg}"
+				th:if="${pageMsg!=null}">
+				</div>
+			
+
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<a th:href="@{/employees/showFormForAdd}"
+								class="btn btn-primary btn-sm mb-3"> Add Employee </a>
+							<div class="clearfix"></div>
+						</div>
+
+						<!--  Employee Search form Start-->
+						<form action="#" th:action="@{/employees/search}" method="POST"
+							data-parsley-validate class="form-horizontal form-label-left"
+							name="emp_Search"  >
+
+
+							<div class="form-group">
+								<select class="form-control col-md-7 col-xs-12" id="department"
+									name="department">
+									<option value="0">Select Department</option>
+									<option th:each="department : ${departments}"
+										th:value="${department.getDeptId()}"
+										th:text="${department.getDeptName()} "></option>
+								</select>
+							</div>
+							<div class="form-group">
+								OR <select class="form-control col-md-7 col-xs-12" id="role"
+									name="role">
+									<option value="0">Select Role</option>
+									<option th:each="role : ${roles}"
+										th:value="${role.getId()}" th:text="${role.getRoleName()}">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								OR <input class="form-control col-md-7 col-xs-12" type="text"
+									th:value="${employeeName}" name="employeeName"
+									placeholder="Search By Name" aria-label="Search">
+							</div>
+							
+							<div class="form-group">
+								OR <input class="form-control col-md-7 col-xs-12" type="text"
+									th:value="${userID}" name="userID"
+									placeholder="Search By userID" aria-label="Search"
+									length="4">
+							</div>
+							
+							<!-- <div class="form-group">
+								OR <input class="form-control col-md-7 col-xs-12" type="number"
+									th:value="${ssn}" name="ssn"
+									placeholder="Search By SSN (Last 4 digits)" aria-label="Search"
+									length="4">
+							</div> -->
+							<!-- <div class="ln_solid"></div> -->
+							<div class="form-group">
+								<button class="btn btn-outline-secondary" type="button" onclick="validateInput()"
+									>Search</button>
+							</div>
+						</form>
+						<!--  Employee Search for End -->
+						<div class="x_content">
+							<table id="empTable" class="table table-bordered table-striped">
+								<thead class="thead-dark">
+									<tr>
+										<!--th>Employee ID</th> -->
+										<th>Employee Name</th>
+										<th>Department</th>
+										<th>Employee Position</th>
+										<th>User Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Hire Date</th>
+										<th>End Date</th>
+										<th>Phone</th>
+										<th>Salary ($)</th>
+										<th>SSN (Last 4 digits)</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="emp : ${employees}">
+										<!-- td th:text="${emp.id}" /> -->
+										<td th:text="${emp.firstname + ', '+emp.lastname}" />
+										<td th:text="${emp.getDepartment().getDeptName()}" />
+										<td th:text="${emp.role.roleName}" />
+										<td th:text="${emp.userName}" />
+										<td th:text="${emp.email}" />
+										<td th:text="${emp.gender}" />
+										<td th:text="${emp.endDate}" />
+										<td th:text="${emp.hireDate}" />
+										<td th:text="${emp.phoneNumber}" />
+										<td th:text="${emp.salary}" />
+										<td th:text="${emp.getSSNLast4Digits()}" />
+										<td><a
+											th:href="@{/employees/showForForUpdate(employeeid=${emp.id})}"
+											class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp; <a
+											th:href="@{/employees/deleteRecord(employeeid=${emp.id})}"
+											class="btn btn-danger btn-sm mb-3"
+											onclick="if (!(confirm('Are you sure you want to Delete'))) return false">
+												Delete </a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
+
+
 </body>
+
+
 </html>

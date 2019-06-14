@@ -58,6 +58,31 @@ public class DepartmentService implements IDepartmentService{
 		deptRepo.save(dept);
 	}
 
+	
+	@Override
+	public Department findByDeptName(String name) {
+		//List<Department> dept = deptRepo.findByDeptName(name);
+		Department dept = deptRepo.findByDeptName(name);
+		
+		return dept;
+	}
+		@Override
+	public List<Department> findByDeptNameIgnoreCaseContaining(String name) {
+		List<Department> dept = deptRepo.findByDeptNameIgnoreCaseContaining(name);
+		return dept;
+	}
+	
+	
+	@Override
+	public void saveDepartment(Department dept) {
+		deptRepo.save(dept);
+	}
+	
+	@Override
+	public void updateDepartment(Department dept) {
+		deptRepo.save(dept);
+	}
+
 	@Override
 	public void deleteDepartment(Department dept) {
 		deptRepo.delete(dept);

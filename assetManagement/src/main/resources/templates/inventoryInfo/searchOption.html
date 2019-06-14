@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<h3>Inventory Search Options</h3>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+		<br>
+		<a th:href="@{/userAuth/Home}" class="btn btn-primary btn-sm mb-3">
+			        Return to Home </a>
+		<br>
+		
+		<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventoryInfo/search}" method="POST">
+  			
+  			<input class="form-control" type="text" th:value="${asset}" name="asset" placeholder="Search By Asset Name" aria-label="Search">
+		    <button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+		<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventoryInfo/searchDate}" method="POST">
+  			
+  			<input class="form-control" type="text" th:value="${dt}" name="dt" placeholder="Search By Purchase Date" aria-label="Search">
+		    <button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+		<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventoryInfo/searchVendor}" method="POST">
+  			
+  			<input class="form-control" type="text" th:value="${vendor}" name="vendor" placeholder="Search By Vendor Name" aria-label="Search">
+		    <button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+			<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventoryInfo/searchStatus}" method="POST">
+  			
+  		<input class="form-control" type="text" th:value="${status}" name="status" placeholder="Search By Asset Status" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+</div>	
+</body>
+</html>
+		

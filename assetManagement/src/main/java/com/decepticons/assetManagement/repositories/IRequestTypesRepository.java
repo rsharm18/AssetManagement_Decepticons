@@ -1,5 +1,6 @@
 package com.decepticons.assetManagement.repositories;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,10 @@ import com.decepticons.assetManagement.entity.RequestTypes;
 public interface IRequestTypesRepository extends MongoRepository<RequestTypes, String> 
 {
 	public RequestTypes findByRequesttype(String requesttype);
-	public void deleteByRequesttype(String requesttype);
+
+	
+	
+	//public void deleteByRequesttype(String requesttype);
 //	Optional<RequestTypes> findByRequestType(String requesttype);
 //
 //	void deleteByRequestType(String requesttype);

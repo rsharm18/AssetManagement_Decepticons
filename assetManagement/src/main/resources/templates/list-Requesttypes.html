@@ -1,31 +1,51 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Thyeleaf Demo</title>
-
-<!-- Required meta tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
 
-
+<title>Types</title>
 </head>
 <body>
-	<div class="container">
-		<h3>Request Types</h3>
-		<a th:href="@{/requesttypes/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Type Of Request</a>
-		<table class="table table-bordered table-striped">
+	 <!-- page content -->
+         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Request Types Directory</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                  <!--   <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                   	<a th:href="@{/requesttypes/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+			        Add Type Of Request </a>
+                       <div class="clearfix"></div>
+                  </div>
+		 <div class="x_content">
+		<table id="requesttypeTable" class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<!--th>Employee ID</th> -->
 					<th>Request Type</th>
-					<th>Access</th>
+					
+					<th>Role</th>
 					<th>Action</th> 
 					
 				</tr>
@@ -34,14 +54,21 @@
 				<tr th:each="req : ${requesttypes}">
 					<!-- td th:text="${emp.id}" /> -->
 					<td th:text="${req.requesttype}" />
-					<td th:text="${req.access}" />
+					
+					<td th:text="${req.role}" />
 					<td>
-						<a th:href="@{/requesttypes/showForForUpdate(request_type=${req.requesttype})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
-						<a th:href="@{/requesttypes/deleteRecord(request_type=${req.requesttype})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
+						<a th:href="@{/requesttypes/showForForUpdate(requesttype=${req.requesttype})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
+						<a th:href="@{/requesttypes/deleteRecord(requesttype=${req.requesttype})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
 	</div>
 </body>
 </html>

@@ -23,4 +23,7 @@ public interface IDepartmentManagerService {
 
 	public int countManagerByDepartment(Department d);
 
+
+	public List<DepartmentManager> findAll();
+
 }

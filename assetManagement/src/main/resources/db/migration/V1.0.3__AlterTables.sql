@@ -14,5 +14,22 @@ Alter Table Employees
 --Alter Table department_manager
 -- ADD FOREIGN KEY (employee_id) REFERENCES  Employees(employee_id);
 
--- Alter Table department_manager
--- ADD FOREIGN KEY (department_id) REFERENCES  Departments(department_id);
+
+Alter table Request 
+ADD CONSTRAINT FK_RequestEMP FOREIGN KEY (employee_id) REFERENCES Employees(employee_id);
+
+Alter table Request 
+ADD CONSTRAINT FK_RequestDeptID FOREIGN KEY (department_id) REFERENCES departments(department_id);
+
+Alter table department_manager 
+ADD CONSTRAINT FK_EmpID FOREIGN KEY (employee_id) REFERENCES Employees(employee_id);
+
+Alter table department_manager
+ADD CONSTRAINT FK_deptID FOREIGN KEY (department_id) REFERENCES departments(department_id);
+
+
+Alter table Request 
+ADD CONSTRAINT FK_RequestPRIORITY FOREIGN KEY (priority) REFERENCES PRIORITY(priority_id);
+
+ALTER TABLE LOGIN_HISTORY MODIFY ("USERID" NOT NULL ENABLE);
+ALTER TABLE LOGIN_HISTORY MODIFY ("LOGINTIME" NOT NULL ENABLE);

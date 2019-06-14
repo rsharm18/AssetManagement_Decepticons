@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -24,27 +25,42 @@ import lombok.Setter;
 @Document(collection = "RequestTypes")
 public class RequestTypes
 {
-	  @Id private String id;
-	  @Field("Request_type")
+	  @Id
+	  private ObjectId id = new ObjectId();
+//	  private String id;
+	  
+	  
+	  @Field("requesttype")
 	  public String requesttype;
-	  @Field("Access")
-	  public boolean access;
 	  
 	  
-	  public RequestTypes(String requesttype,boolean access)
+	  
+	  @Field("role")
+	  public String role;
+	 
+	  
+	  public RequestTypes(ObjectId id  ,String requesttype ,String role)
 	  {
-		  super();
+		  this.id = id;
 		  this.requesttype = requesttype;
-		  this.access = access;
+		
+		  this.role = role;
+		
 	  }
-	
+//	  public RequestTypes(String requesttype,String role)
+//	  {
+//		  super();
+//		
+//		  this.requesttype = requesttype;
+//		  this.role = role;
+//	  }
 	 public RequestTypes() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public String toString()
 	 {
-		 return "Request Type "+ requesttype+" access "+ access;
+		 return "Request Type "+ requesttype+" role "+ role;
 	 }
 	
 }

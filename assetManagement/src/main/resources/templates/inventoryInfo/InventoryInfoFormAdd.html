@@ -1,0 +1,94 @@
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+
+<title>Inventory Information</title>
+</head>
+<body>
+       <!-- page content -->
+         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Inventory Information Form</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                 <div class="input-group">
+                  </div> 
+                </div>
+              </div>
+            </div>
+            
+          <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                   	<a th:href="@{/userAuth/Home}" class="btn btn-primary btn-sm mb-3">
+			        Return to Home </a>
+                       <div class="clearfix"></div>
+                  </div>
+<!-- 	<a th:href="@{/requests/list}" class="btn btn-primary btn-sm mb-3">
+			Back </a> -->
+			
+			 <div class="x_content">
+			<form name="MAINFORM" action="#" th:action="@{/inventoryInfo/add}"
+			th:object="${invRecord}" method="POST"  data-parsley-validate class="form-horizontal form-label-left">
+				<div class="form-group">
+            <input class="form-control mb-4 col-4" type="text" th:field="*{nameOfAsset}" placeholder="Name of Asset" />
+            </div>
+            <div class="form-group">
+      		<input class="form-control mb-4 col-4" type="text" th:field="*{vId}" placeholder="Vendor ID" />	
+            </div>
+            <div class="form-group">
+			<input class="form-control mb-4 col-4" type="text" th:field="*{vName}" placeholder="Vendor Name" />
+            </div>
+            <div class="form-group">
+            <input class="form-control mb-4 col-4" type="text" th:field="*{assetStatus}" placeholder="Asset Status" />
+            </div>
+            <div class="form-group">        
+		 <input class="form-control mb-4 col-4" type="text" th:field="*{serialNo}" placeholder="Serial No." />
+            </div>
+            <div>
+			<input placeholder="Purchase Date (YYYY-DD-MM)" class="form-control col-md-7 col-xs-12" type="text" onfocus="(this.type='date')" 
+				onblur="(this.type='text')" id="date" th:field="*{purchaseDate}"
+                 />
+              </div>
+              
+			 <div class="ln_solid"></div>
+			<div class="form-group">
+            <button type="submit" class="btn btn-info col-2">Save</button>
+            </div>
+		</form>
+			</div>
+          </div>
+        </div>
+        </div>
+        <!-- page content -->
+ 	   </div>
+        </div>
+</body>
+<script>
+	
+	$(document).ready(function () {
+	    $("#date").datepicker({ dateFormat: "MM/dd/yyyy" });
+	});
+	
+ 	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	}) 
+	</script>
+</html>

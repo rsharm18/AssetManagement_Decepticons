@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Update Roles</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	<style>
+	div.align{
+		text-align: center;
+	}
+	</style>
+	<div class="align">
+	<h1> Manage Roles </h1>
+	
+	<form name="MAIN" method="GET">
+			<input class="AddNewRole" type="button" value="Create new role" onclick="window.location.href='/roles/showFormForAdd'" />
+			<input class="ManageRole" type="button" value="Manage Role" onclick="window.location.href='/roles/search'" />
+			
+			<!--
+			<a fd:href="@{/roles/showFormForAdd(roleid=${role.id})}" class="btn btn-primary btn-sm mb-3"> Create new role </a> &nbsp;
+			<a fd:href="@{/roles/search(role=${role})}" class="btn btn-primary btn-sm mb-3"> Manage roles </a> &nbsp;
+			-->
+			
+		</form>
+</head>
+<body>
+
+</body>
+</html>

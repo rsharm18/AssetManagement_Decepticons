@@ -30,11 +30,19 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                &nbsp;&nbsp;Welcome <b><span th:text="${session.user.getUser().getName()}"></span></b><br>
+				&nbsp;&nbsp;Reporting Manager : <b><span th:text="${session.user.getUser().getManagerName()}"></span></b><br>
+				&nbsp;&nbsp;Position &nbsp;&nbsp;&nbsp;: <b><span th:text="${session.user.getUser().getRole().getRoleName()}"></span></b><br>
+				&nbsp;&nbsp;LastLogin : <b><span th:text="${session.user.getLastLogin().toString()}"></span></b><br>
+                <ul class="nav side-menu">
+                  <!-- <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+
                     <ul class="nav child_menu">
                       <li><a href="index.html">Dashboard</a></li>
                       <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
+
                   </li>
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -62,6 +70,75 @@
                     <li><a  data-th-href = "@{../departments/list}">Department Table</a></li> 
                     </ul>
                   </li>
+
+                  </li> -->
+                  <li><a><i class="fa fa-edit"></i> Request Management <span class="fa fa-chevron-down"></span></a>
+
+   					<div th:switch="${session.user.getUser().getRole().getRoleName()}">
+   					
+	   					 <ul class="nav child_menu" th:case="'Employee'"> <!--  Employee -->
+	                   		 <li><a data-th-href = "@{../requests/showFormForAdd}">Add Request </a></li> 
+	                    </ul>
+                    
+	                    <ul class="nav child_menu" th:case="'Manager'"> <!--  Manager-->
+		                     <li><a data-th-href = "@{../requests/showFormForAdd}">Add Request </a></li> 
+		                     <li><a data-th-href = "@{../requests/managers}">Approve Reject Requests</a></li>
+		                   <!--   <li><a href="/requests/approveRejectReq" target="MAIN">Approve/Reject Request</a></li>
+							 <li><a href="/employees/requestResource" target="MAIN">Request a Resource from Resource Pool</a></li> -->
+						 </ul>
+					 
+	                    <ul class="nav child_menu" th:case="'Admin'"> <!--  Admin -->
+		                    <li><a data-th-href = "@{../requests/showFormForAdd}">Add Request </a></li> 
+		                    
+		                    <li><a data-th-href = "@{../requesttypes/showFormForAdd}">Add Request Type </a></li>
+		                    <li><a  data-th-href = "@{../requestsubtypes/showFormForAdd}">Add Request SubType</a></li> 
+		                    <li><a  data-th-href = "@{../requestsstatus/showFormForAdd}">Add Request Status</a></li>
+		                    
+							
+							
+							<li><a data-th-href = "@{../requests/managers}">Approve Reject Requests</a></li>
+	                    </ul>
+                    
+                   </div>
+                  </li>
+                  
+                  <li > <!--  Admin -->
+                  		<a><i class="fa fa-table"></i> Resource Management <span class="fa fa-chevron-down"></span></a>
+                 		<div th:switch="${session.user.getUser().getRole().getRoleName()}">
+	                    	<ul class="nav child_menu" th:case="'Admin'">
+			                  <li><a data-th-href = "@{../employees/showFormForAdd}"> Add Employee </a></li>
+		                    
+						    <li><a data-th-href = "@{../roles/showFormForAdd}"> Add Roles </a></li>
+		                    <li><a data-th-href = "@{../inventoryInfo/showFormForAdd}"> Add Inventory Information </a></li>
+		                    <li><a data-th-href = "@{../inventory/showFormForAdd}"> Inventory Form </a></li>
+		                    <li><a data-th-href = "@{../departments/AddDepartment}"> Add Department </a></li>
+                   			<li><a data-th-href = "@{../requestsPriority/showFormForAdd}"> Add Priority </a></li>
+              
+							</ul>
+                         </div>
+                     </li>
+                   
+                  
+                  	<li > <!--  Admin -->
+                  		<a><i class="fa fa-table"></i> Master Data Admin <span class="fa fa-chevron-down"></span></a>
+                 		<div th:switch="${session.user.getUser().getRole().getRoleName()}">
+	                    	<ul class="nav child_menu" th:case="'Admin'">
+			                    <li><a data-th-href = "@{../requests/list}"> Request Table </a></li> 
+			                    <li><a data-th-href = "@{../requesttypes/list}">Request Type Table </a></li> 
+			                    <li><a  data-th-href = "@{../requestsubtypes/list}">Request SubType Table</a></li> 
+			                    <li><a  data-th-href = "@{../requestsstatus/list}">Request Status Table</a></li> 
+			                    <li><a  data-th-href = "@{../employees/list}">Employee Table</a></li> 
+			                    <li><a  data-th-href = "@{../requestsPriority/list}">Request Priority Table</a></li> 	                    
+	                    		<li><a  data-th-href = "@{../departments/list}">Department Table</a></li> 
+	                    		
+	                    		<li><a  data-th-href = "@{../roles/list}">Role Table</a></li>
+								<li><a data-th-href = "@{../inventoryInfo/list}"> Inventory Information Table </a></li>
+			                    <li><a data-th-href = "@{../inventory/list}"> Inventory Table </a></li>
+              
+							</ul>
+                         </div>
+                     </li>
+
 <!--                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Chart JS</a></li>
