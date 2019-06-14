@@ -3,13 +3,10 @@ package com.decepticons.assetManagement.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.decepticons.assetManagement.entity.Department;
-import com.decepticons.assetManagement.entity.Employee;
 import com.decepticons.assetManagement.repositories.IDepartmentRepository;
 import com.decepticons.assetManagement.repositories.IEmployeeRepository;
 import com.decepticons.assetManagement.services.protocols.IDepartmentService;
@@ -35,9 +32,9 @@ public class DepartmentService implements IDepartmentService{
 		Optional<Department> dept = deptRepo.findById(id);
 		if(dept.isPresent()) {
 			return dept.get();
-		}
-		else {
-			throw new RuntimeException("Department not found with ID = " + id);
+		} else {
+			return null;
+			// throw new RuntimeException("Department not found with ID = " + id);
 		}
 	}
 	

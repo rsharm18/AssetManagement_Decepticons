@@ -25,13 +25,11 @@ public class RoleService implements IRoleService
 	@Override
 	public Role findById(int Id) {
 		Optional<Role> result = roleRepo.findById(Id);
-		if(result.isPresent())
-		{
+		if (result.isPresent()) {
 			return result.get();
-		}
-		else
-		{
-			throw new RuntimeException("Role not found with ID=" + Id); 
+		} else {
+			// throw new RuntimeException("Role not found with ID=" + Id);
+			return null;
 		}
 	}
 
