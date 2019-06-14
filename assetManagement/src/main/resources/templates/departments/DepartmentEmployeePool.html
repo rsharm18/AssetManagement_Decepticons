@@ -52,7 +52,7 @@
 					<td style="width: 10%" th:text="${emp.getFirstname() + ' ' + emp.getLastname() }" />
 					<td style="width: 30%" th:text="${emp.getEmail()}" />
 					<td style="width: 15%" th:text="${emp.getPhoneNumber()}" />
-					<td style="width: 10%"><a th:href="@{/departments/saveEmployee(deptid=${desDept.deptId}, empid=${emp.id})}" class="btn btn-outline-primary btn-sm mb-3" th:text="'Add to ' + ${desDept.deptName}"> </a></td>
+					<td style="width: 10%"><a th:href="@{/departments/saveEmployee(deptid=${desDept.deptId}, empid=${emp.id}, manid=102)}" class="btn btn-outline-primary btn-sm mb-3" th:text="'Add to ' + ${desDept.deptName}"> </a></td>
 				</tr>
 			</tbody>
 		</table>
