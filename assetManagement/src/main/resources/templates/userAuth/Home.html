@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+
+</head>
+
+<body>
+
+        <!-- page content -->
+         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Welcome to Asset Managemet System</h3>
+                <div class="alert alert-danger" th:text="${pageMsg}"
+				th:if="${pageMsg!=null}">
+				</div>
+              </div>
+
+			
+
+            <div class="clearfix"></div>
+
+    
+                  <div class="x_content">
+                    
+            
+                <img src="/images/DecepticonLogo.jpg" alt="..." class=".img-responsive">
+              
+                  </div>
+                </div>
+              </div>
+             
+          </div>
+        
+        <!-- page content -->
+
+
+
+</body>
+</html>

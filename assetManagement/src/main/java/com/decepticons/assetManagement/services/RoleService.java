@@ -41,8 +41,28 @@ public class RoleService implements IRoleService
 	}
 
 	@Override
-	public void deleteById(int id) {
-		roleRepo.deleteById(id);
+	public void deleteById(Role entity) {
+		//roleRepo.deleteById(id);
+		roleRepo.delete(entity);
 	}
+
+	@Override
+	public List<Role> findRoleByName(String r){
+		return roleRepo.findByRoleName(r);
+	}
+
+	@Override
+	public void updateRole(Role role) {
+		System.out.println(role.getId());
+		System.out.println(role.getRoleName());
+		roleRepo.save(role);
+	}
+	
+//	@Override
+//	public List<Role> findByRoleId(Role r) {
+//		System.out.println("calling custom method");
+//		return roleRepo.findByRoleId(r);
+//	}
+
 	
 }

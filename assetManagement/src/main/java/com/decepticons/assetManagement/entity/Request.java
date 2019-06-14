@@ -1,12 +1,18 @@
 package com.decepticons.assetManagement.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,7 +23,7 @@ import lombok.Setter;
 @Data
 @Entity
 @Table(name="request")
-public class Request {
+public class Request implements Serializable {
 
 
 	@Getter
@@ -38,9 +44,9 @@ public class Request {
 	@Column(name="request_description")
 	private String requestdescription;
 	
-	
-	@Column(name="employee_id")
-	private Integer requestemployee_id;
+	@OneToOne
+	@JoinColumn(name="employee_id")
+	private Employee requestempid;
 	
 	
 	@Column(name="first_name")
@@ -56,6 +62,10 @@ public class Request {
 	@Column(name="priority")
 	private Integer requestpriority;
 	
+	@OneToOne
+	@JoinColumn(name="department_id")
+	private Department requestdepartmentid;
+	
 	@Column(name="department_name")
 	private String requestdepartmentname;
 	
@@ -69,8 +79,8 @@ public class Request {
 	@Column(name="request_status")
 	private String requeststatus;
 	
-	@Column(name="new_owner_empid")
-	private Integer requestassigtoowner;
+//	@Column(name="new_owner_empid")
+//	private Integer requestassigtoowner;
 	
 //	@Column(name="new_owner_emp_first_name")
 //	private String requestnewownerempfirstname;
@@ -91,9 +101,9 @@ public class Request {
 	//define constructors
 	
 	public Request(int ID,String request_type, String request_subtype,
-			String request_description, Integer employee_id,String first_name,String last_name,
-			Date request_date, Integer priority,String department_name,String asset_name,
-			Integer units, String request_status,Integer new_owner_empid		//, String new_owner_emp_first_name
+			String request_description, Employee employee_id,String first_name,String last_name,
+			Date request_date, Integer priority,Department department_id,String department_name,String asset_name,
+			Integer units, String request_status		//,Integer new_owner_empid, String new_owner_emp_first_name
 			,Integer assigned_to_emp_id,String assigned_to ,Date assigned_date,Date closed_before)
 	{
 		super();
@@ -101,7 +111,7 @@ public class Request {
 		this.requestsubtype = request_subtype;
 		this.id = ID;
 		this.requestdescription = request_description;
-		this.requestemployee_id = employee_id;
+		this.requestempid = employee_id;
 		this.requestfirstname = first_name;
 		this.requestlastname = last_name;
 		this.requestdate = request_date;
@@ -110,7 +120,8 @@ public class Request {
 		this.requestassetname = asset_name;
 		this.requestunits = units;
 		this.requeststatus = request_status;
-		this.requestassigtoowner = new_owner_empid;
+		this.requestdepartmentid = department_id;
+//		this.requestassigtoowner = new_owner_empid;
 //		this.requestnewownerempfirstname = new_owner_emp_first_name;
 //		this.requestassignedempid = assigned_to_emp_id;
 		this.requestassignedto = assigned_to;
@@ -118,28 +129,57 @@ public class Request {
 		this.requestclosebefore = closed_before;
 	}
 	
-
+//	public Request(int ID,String request_type, String request_subtype,
+//			String request_description, Employee employee_id,String first_name,String last_name,
+//			Date request_date, Integer priority,Department department_id,String department_name,String asset_name,
+//			Integer units, String request_status		//,Integer new_owner_empid, String new_owner_emp_first_name
+//			,Integer assigned_to_emp_id)
+//	{
+//		super();
+//		this.requesttype = request_type;
+//		this.requestsubtype = request_subtype;
+//		this.id = ID;
+//		this.requestdescription = request_description;
+//		this.requestempid = employee_id;
+//		this.requestfirstname = first_name;
+//		this.requestlastname = last_name;
+//		this.requestdate = request_date;
+//		this.requestpriority = priority;
+//		this.requestdepartmentname = department_name;
+//		this.requestassetname = asset_name;
+//		this.requestunits = units;
+//		this.requeststatus = request_status;
+//		this.requestdepartmentid = department_id;
+////		this.requestassigtoowner = new_owner_empid;
+////		this.requestnewownerempfirstname = new_owner_emp_first_name;
+////		this.requestassignedempid = assigned_to_emp_id;
+//		this.requestassignedto = null;
+//		this.requestassigneddate = request_date;
+//		this.requestclosebefore = request_date;
+//	}
+	
 	
 	public Request(String request_type, String request_subtype,
-			String request_description, Integer employee_id,String first_name, String last_name,
-			Date request_date,Integer priority,String department_name,String asset_name,
-			Integer units,String request_status,int new_owner_empid 		//, String new_owner_emp_first_name
-			,Integer assigned_to_emp_id,String assigned_to,Date assigned_date,Date closed_before)
+			String request_description, Employee employee_id,String first_name, String last_name,
+			Date request_date,Integer priority,Department department_id,String department_name,String asset_name,
+			Integer units,String request_status, 		//int new_owner_empid, String new_owner_emp_first_name
+			Integer assigned_to_emp_id,String assigned_to,Date assigned_date,Date closed_before)
 	{
 		super();
 		this.requesttype = request_type;
 		this.requestsubtype = request_subtype;
 		this.requestdescription = request_description;
-		this.requestemployee_id = employee_id;
+		this.requestempid = employee_id;
 		this.requestfirstname = first_name;
 		this.requestlastname = last_name;
 		this.requestdate = request_date;
 		this.requestpriority = priority;
+		this.requestdepartmentid = department_id;
 		this.requestdepartmentname = department_name;
 		this.requestassetname = asset_name;
 		this.requestunits = units;
 		this.requeststatus = request_status;
-		this.requestassigtoowner = new_owner_empid;
+//		this.requestassigtoowner = new_owner_empid;
 //		this.requestnewownerempfirstname = new_owner_emp_first_name;
 //		this.requestassignedempid = assigned_to_emp_id;
 		this.requestassignedto = assigned_to;
@@ -148,8 +188,34 @@ public class Request {
 	}
 	
 
-	
-	
+//	public Request(String request_type, String request_subtype,
+//			String request_description, Employee employee_id,String first_name, String last_name,
+//			Date request_date,Integer priority,Department department_id,String department_name,String asset_name,
+//			Integer units,String request_status, 		//int new_owner_empid, String new_owner_emp_first_name
+//			Integer assigned_to_emp_id)
+//	{
+//		super();
+//		this.requesttype = request_type;
+//		this.requestsubtype = request_subtype;
+//		this.requestdescription = request_description;
+//		this.requestempid = employee_id;
+//		this.requestfirstname = first_name;
+//		this.requestlastname = last_name;
+//		this.requestdate = request_date;
+//		this.requestpriority = priority;
+//		this.requestdepartmentid = department_id;
+//		this.requestdepartmentname = department_name;
+//		this.requestassetname = asset_name;
+//		this.requestunits = units;
+//		this.requeststatus = request_status;
+////		this.requestassigtoowner = new_owner_empid;
+////		this.requestnewownerempfirstname = new_owner_emp_first_name;
+////		this.requestassignedempid = assigned_to_emp_id;
+//		this.requestassignedto = null;
+//		this.requestassigneddate = null;
+//		this.requestclosebefore = null;
+//	}
+//	
 	//define getter/setters
 	
 	public Request() {

@@ -1,0 +1,64 @@
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+	 <!-- page content -->
+         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+              	<h3>Inventory Information</h3>
+              </div>
+            </div>
+            
+          <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">         		
+		<a th:href="@{/inventoryInfo/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Inventory Info</a>
+                  </div>
+	 <div class="x_content">
+		<table id="empTable" class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Inventory ID</th>
+					<th>Name of Asset</th>
+					<th>Asset Status</th>
+					<th>Vendor ID</th>
+					<th>Vendor Name</th>
+					<th>Serial No.</th>
+					<th>Purchase Date</th>					
+					<th style="width: 20%">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="inve : ${inventoryInfo}">
+					<td th:text="${inve.inv}" /> 
+					<td th:text="${inve.nameOfAsset}" />
+					<td th:text="${inve.assetStatus}" />
+					<td th:text="${inve.vId}" />
+					<td th:text="${inve.vName}" />
+					<td th:text="${inve.serialNo}" />
+					<td th:text="${inve.purchaseDate}" />
+					<td width='20%'>
+						<a th:href="@{/inventoryInfo/showFormForUpdate(inventory_id=${inve.inv})}" class="btn btn-primary btn-sm mb-3"> Update </a> &nbsp;
+						<a th:href="@{/inventoryInfo/deleteRecord(inventory_id=${inve.inv})}" class="btn btn-danger btn-sm mb-3" onclick="if (!(confirm('Are you sure you want to Delete'))) return false"> Delete </a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+	</div>
+</body>
+</html>

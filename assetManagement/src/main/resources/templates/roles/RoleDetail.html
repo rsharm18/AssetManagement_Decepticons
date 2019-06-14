@@ -1,0 +1,75 @@
+
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+<title>Department Detail</title>
+
+</head>
+<body>
+
+         <div class="right_col" role="main" data-layout-fragment="content">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Role Details</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+  
+                </div>
+              </div>
+            </div>
+            
+          <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                   	<a th:href="@{/roles/list}" class="btn btn-primary btn-sm mb-3">
+			        BACK </a>
+                       <div class="clearfix"></div>
+                  </div>
+
+ <div class="x_content">
+		<h3 th:text="'Role: ' + ${role.roleName}"></h3>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Access</th>
+				</tr>
+			</thead>
+			<tbody>
+				<td th:text="${role.getId() }" />
+				<td th:text="${role.getRoleName() }" />
+				<td th:text="${role.getRoleAccess() }" />
+			</tbody>
+		</table>
+		
+		<br/>
+		<h5>Employees</h5>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp : ${empList}">
+					<td th:text="${emp.getFirstname() + ' ' + emp.getLastname() }" />
+					<td th:text="${emp.getEmail()}" />
+					<td th:text="${emp.getPhoneNumber()}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

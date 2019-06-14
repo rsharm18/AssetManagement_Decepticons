@@ -11,5 +11,7 @@ public interface IRoleService {
 
 	public Role findById(int Id);
 	public void save (Role role);
-	public void deleteById(int id);
+	public void deleteById(Role entity);
+	public List<Role> findRoleByName(String name);
+	public void updateRole(Role role);
 }

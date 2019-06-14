@@ -1,43 +1,3 @@
----- Change History
-----change 1 on 4/20/19 - update in employee table(added department_no column in
----- employee table as requestDetail have department_no associated to emp.) done by Disha 
---
---
---
---CREATE TABLE employee (
---  employee_id Number,
---  first_name varchar(45) DEFAULT NULL,
---  last_name varchar(45) DEFAULT NULL,
---  email varchar(45) DEFAULT NULL,
-----  change 1 started
---  department_no Number DEFAULT NULL,
-----  change  1 ended 
---  PRIMARY KEY (employee_id)
---) ;
---
---
---CREATE TABLE request (
---  request_id Number,
---  request_type varchar(45) DEFAULT NULL,
---  request_subtype varchar(45) DEFAULT NULL,
---  request_description varchar(100) DEFAULT NULL,
---  request_date Date DEFAULT sysdate,
---  employee_id Number,
---  first_name varchar(45),
---  last_name varchar(45),
---  department_name varchar(30),
---  asset_name varchar(45) DEFAULT NULL,
---  units Number DEFAULT 1,
---  priority Number DEFAULT 5,
---  request_status varchar(15) DEFAULT 'Not Accepted',
---  new_owner_empid Number DEFAULT NULL,
--- -- new_owner_emp_first_name varchar(45) DEFAULT NULL,
---  assigned_to_emp_id Number DEFAULT NULL,
---  assigned_to varchar(45) DEFAULT NULL,
---  assigned_date Date DEFAULT NULL,
---  closed_before Date DEFAULT (SYSDATE + 10),
---  PRIMARY KEY (request_id)
---) ;
 
 
 
@@ -50,18 +10,18 @@
 --change 3 on 4/21/19  - requesttypeemp and requesttypesystemAnalyst table created
 -- so can store request types in this and show in drop down list on JSP in future.
 
---CHNAGE #3 started----
-CREATE TABLE requesttypeemp (
-	request_type_id Number,
-    request_type varchar(45) DEFAULT NULL
-  );
-  
-  CREATE TABLE requesttypesystemanalyst (
-	request_type_id Number,
-    request_type varchar(45) DEFAULT NULL
-  );
-  
- ----CHANGE #3 END------------
+----CHNAGE #3 started----
+--CREATE TABLE requesttypeemp (
+--	request_type_id Number,
+--    request_type varchar(45) DEFAULT NULL
+--  );
+--  
+--  CREATE TABLE requesttypesystemanalyst (
+--	request_type_id Number,
+--    request_type varchar(45) DEFAULT NULL
+--  );
+--  
+-- ----CHANGE #3 END------------
  
   
   
@@ -73,20 +33,23 @@ CREATE TABLE Employees (
   first_name varchar(45) DEFAULT NULL,
   last_name varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
+  gender varchar(50) DEFAULT 'M',
   
---  hire_date date DEFAULT '1986-04-12',
---  end_date date DEFAULT '2140-04-12',
-  
+  dob date DEFAULT to_date('04-12-1986', 'dd/mm/YYYY'),
   hire_date date DEFAULT to_date('04-12-1986', 'dd/mm/YYYY'),
   end_date date DEFAULT to_date('04-12-2140', 'dd/mm/YYYY') ,
   
   phone_number VARCHAR2(20) DEFAULT '00000000',
   salary Number DEFAULT 190000,
  
-  user_name VARCHAR2(20) not null,
+  user_name VARCHAR2(20) not null UNIQUE,
+  
+  ssn_no VARCHAR2(20) UNIQUE,
+  reporting_manager Number,
+  
   --password VARCHAR2(20) not null,
   
-  PRIMARY KEY (employee_id , user_name)
+  PRIMARY KEY (employee_id)
 );
 
 create Table Roles(
@@ -111,9 +74,10 @@ CREATE TABLE departments(
 
 --CHANGE 2 STARTED--------
 CREATE TABLE department_manager(
+deptmanager_id Number,
 department_id Number,
 employee_id Number,
-PRIMARY KEY(department_id)
+PRIMARY KEY(deptManager_id)
 );
 --END OF CHANGE 2-------------
 
@@ -130,14 +94,47 @@ CREATE TABLE request (
   department_name varchar(30),
   asset_name varchar(45) DEFAULT NULL,
   units Number DEFAULT 1,
-  priority Number DEFAULT 5,
+  priority Number DEFAULT 3,
   request_status varchar(15) DEFAULT 'Not Accepted',
-  new_owner_empid Number DEFAULT NULL,
- -- new_owner_emp_first_name varchar(45) DEFAULT NULL,
   assigned_to_emp_id Number DEFAULT NULL,
   assigned_to varchar(45) DEFAULT NULL,
   assigned_date Date DEFAULT NULL,
-  closed_before Date DEFAULT (SYSDATE + 10),
+  closed_before Date DEFAULT (SYSDATE + 10) ,
   PRIMARY KEY (request_id)
   
 ) ;
+CREATE TABLE inventory (
+	inventory_id Number,
+	name_Of_Asset varchar(45) DEFAULT NULL,
+	employee_id Number,
+	department_id Number,
+	allocation_status varchar(45) DEFAULT NULL,
+	auth_manager varchar(45) DEFAULT NULL,
+	PRIMARY KEY (inventory_id)
+	) ;
+
+	
+CREATE TABLE inventory_info (
+	inventory_id Number,
+	name_Of_Asset varchar(45) DEFAULT NULL,
+	vendor_id Number,
+	asset_status varchar(45) DEFAULT NULL,
+	serial_no Number,
+	purchase_date Date DEFAULT sysdate,
+	vendor_name varchar(45) DEFAULT NULL,
+	PRIMARY KEY (inventory_id)
+	) ;
+
+CREATE TABLE PRIORITY(
+priority_id number,
+priority_status varchar(100),
+PRIMARY KEY (priority_id)
+);
+
+CREATE TABLE LOGIN_HISTORY 
+   (
+   		loginHistory_id Number not null,
+   		USERID VARCHAR2(50), 
+		LOGINTIME DATE,
+		PRIMARY KEY (loginHistory_id)
+   ); 

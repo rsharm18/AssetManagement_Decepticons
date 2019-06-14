@@ -1,6 +1,8 @@
 package com.decepticons.assetManagement.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -30,6 +32,9 @@ public class Role {
 	
 	@Column(name = "role_access")
 	private String roleAccess;
+	
+	@OneToMany(mappedBy = "role")
+	private List<Employee> employees;
 	
 	@Override
 	public String toString() {

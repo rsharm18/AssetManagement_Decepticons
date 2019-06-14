@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" data-layout-decorate="~{main/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<h3>Inventory Search Options</h3>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+
+
+
+<div class="container">
+		<br>
+		<a th:href="@{/userAuth/Home}" class="btn btn-primary btn-sm mb-3">
+			        Return to Home </a>
+		<br>
+			<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventory/search}" method="POST">
+  			
+  		<input class="form-control" type="text" th:value="${asset}" name="asset" placeholder="Search By Asset Name" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+		
+			<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventory/searchDept}" method="POST">
+  			
+  		<input class="form-control" type="text" th:value="${dept}" name="dept" placeholder="Search By Department" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+			<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventory/searchManager}" method="POST">
+  			
+  		<input class="form-control" type="text" th:value="${man}" name="man" placeholder="Search By Authorizing Manager" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+			<!-- Search bar -->
+		<form class="input-group mb-3" action="#" th:action="@{/inventory/searchStatus}" method="POST">
+  			
+  		<input class="form-control" type="text" th:value="${status}" name="status" placeholder="Search By Allocation Status" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="submit">Search</button>
+		</form>
+		<!-- Search bar -->
+		
+</div>
+</body>
+</html>
+		
